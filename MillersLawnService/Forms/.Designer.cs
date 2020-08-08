@@ -63,6 +63,7 @@
             this.txtMainFrmTitle.ReadOnly = true;
             this.txtMainFrmTitle.Size = new System.Drawing.Size(375, 42);
             this.txtMainFrmTitle.TabIndex = 1;
+            this.txtMainFrmTitle.TabStop = false;
             this.txtMainFrmTitle.Text = "Miller\'s Lawn Service";
             this.txtMainFrmTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -72,9 +73,10 @@
             this.btnMainMnuCustomers.Location = new System.Drawing.Point(22, 339);
             this.btnMainMnuCustomers.Name = "btnMainMnuCustomers";
             this.btnMainMnuCustomers.Size = new System.Drawing.Size(172, 57);
-            this.btnMainMnuCustomers.TabIndex = 2;
+            this.btnMainMnuCustomers.TabIndex = 0;
             this.btnMainMnuCustomers.Text = "Customers";
             this.btnMainMnuCustomers.UseVisualStyleBackColor = true;
+            this.btnMainMnuCustomers.Click += new System.EventHandler(this.btnMainMnuCustomers_Click);
             // 
             // btnMainMnuInvoices
             // 
@@ -82,9 +84,10 @@
             this.btnMainMnuInvoices.Location = new System.Drawing.Point(541, 421);
             this.btnMainMnuInvoices.Name = "btnMainMnuInvoices";
             this.btnMainMnuInvoices.Size = new System.Drawing.Size(172, 57);
-            this.btnMainMnuInvoices.TabIndex = 3;
+            this.btnMainMnuInvoices.TabIndex = 6;
             this.btnMainMnuInvoices.Text = "Invoices";
             this.btnMainMnuInvoices.UseVisualStyleBackColor = true;
+            this.btnMainMnuInvoices.Click += new System.EventHandler(this.btnMainMnuInvoices_Click);
             // 
             // btnMainMnuInvoiceLineItems
             // 
@@ -92,9 +95,10 @@
             this.btnMainMnuInvoiceLineItems.Location = new System.Drawing.Point(502, 497);
             this.btnMainMnuInvoiceLineItems.Name = "btnMainMnuInvoiceLineItems";
             this.btnMainMnuInvoiceLineItems.Size = new System.Drawing.Size(243, 57);
-            this.btnMainMnuInvoiceLineItems.TabIndex = 4;
+            this.btnMainMnuInvoiceLineItems.TabIndex = 7;
             this.btnMainMnuInvoiceLineItems.Text = "Invoice Line Items";
             this.btnMainMnuInvoiceLineItems.UseVisualStyleBackColor = true;
+            this.btnMainMnuInvoiceLineItems.Click += new System.EventHandler(this.btnMainMnuInvoiceLineItems_Click);
             // 
             // btnMainMnuServices
             // 
@@ -102,19 +106,21 @@
             this.btnMainMnuServices.Location = new System.Drawing.Point(233, 339);
             this.btnMainMnuServices.Name = "btnMainMnuServices";
             this.btnMainMnuServices.Size = new System.Drawing.Size(172, 57);
-            this.btnMainMnuServices.TabIndex = 5;
+            this.btnMainMnuServices.TabIndex = 1;
             this.btnMainMnuServices.Text = "Services";
             this.btnMainMnuServices.UseVisualStyleBackColor = true;
+            this.btnMainMnuServices.Click += new System.EventHandler(this.btnMainMnuServices_Click);
             // 
             // MainMnuEmployees
             // 
             this.MainMnuEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMnuEmployees.Location = new System.Drawing.Point(436, 339);
+            this.MainMnuEmployees.Location = new System.Drawing.Point(445, 339);
             this.MainMnuEmployees.Name = "MainMnuEmployees";
             this.MainMnuEmployees.Size = new System.Drawing.Size(172, 57);
-            this.MainMnuEmployees.TabIndex = 6;
+            this.MainMnuEmployees.TabIndex = 2;
             this.MainMnuEmployees.Text = "Employees";
             this.MainMnuEmployees.UseVisualStyleBackColor = true;
+            this.MainMnuEmployees.Click += new System.EventHandler(this.MainMnuEmployees_Click);
             // 
             // btnMainMnuVendors
             // 
@@ -122,9 +128,10 @@
             this.btnMainMnuVendors.Location = new System.Drawing.Point(647, 339);
             this.btnMainMnuVendors.Name = "btnMainMnuVendors";
             this.btnMainMnuVendors.Size = new System.Drawing.Size(172, 57);
-            this.btnMainMnuVendors.TabIndex = 7;
+            this.btnMainMnuVendors.TabIndex = 3;
             this.btnMainMnuVendors.Text = "Vendors";
             this.btnMainMnuVendors.UseVisualStyleBackColor = true;
+            this.btnMainMnuVendors.Click += new System.EventHandler(this.btnMainMnuVendors_Click);
             // 
             // btnMainMnuPurchaseOrders
             // 
@@ -132,9 +139,10 @@
             this.btnMainMnuPurchaseOrders.Location = new System.Drawing.Point(107, 421);
             this.btnMainMnuPurchaseOrders.Name = "btnMainMnuPurchaseOrders";
             this.btnMainMnuPurchaseOrders.Size = new System.Drawing.Size(220, 57);
-            this.btnMainMnuPurchaseOrders.TabIndex = 8;
+            this.btnMainMnuPurchaseOrders.TabIndex = 4;
             this.btnMainMnuPurchaseOrders.Text = "Purchase Orders";
             this.btnMainMnuPurchaseOrders.UseVisualStyleBackColor = true;
+            this.btnMainMnuPurchaseOrders.Click += new System.EventHandler(this.btnMainMnuPurchaseOrders_Click);
             // 
             // btnMainMnuPOLineItems
             // 
@@ -142,9 +150,10 @@
             this.btnMainMnuPOLineItems.Location = new System.Drawing.Point(126, 497);
             this.btnMainMnuPOLineItems.Name = "btnMainMnuPOLineItems";
             this.btnMainMnuPOLineItems.Size = new System.Drawing.Size(172, 57);
-            this.btnMainMnuPOLineItems.TabIndex = 9;
+            this.btnMainMnuPOLineItems.TabIndex = 5;
             this.btnMainMnuPOLineItems.Text = "PO Line Items";
             this.btnMainMnuPOLineItems.UseVisualStyleBackColor = true;
+            this.btnMainMnuPOLineItems.Click += new System.EventHandler(this.btnMainMnuPOLineItems_Click);
             // 
             // btnMainMnuExit
             // 
@@ -152,9 +161,10 @@
             this.btnMainMnuExit.Location = new System.Drawing.Point(647, 596);
             this.btnMainMnuExit.Name = "btnMainMnuExit";
             this.btnMainMnuExit.Size = new System.Drawing.Size(172, 57);
-            this.btnMainMnuExit.TabIndex = 10;
+            this.btnMainMnuExit.TabIndex = 8;
             this.btnMainMnuExit.Text = "&Exit";
             this.btnMainMnuExit.UseVisualStyleBackColor = true;
+            this.btnMainMnuExit.Click += new System.EventHandler(this.btnMainMnuExit_Click);
             // 
             // frmMain
             // 

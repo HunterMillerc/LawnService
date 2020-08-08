@@ -46,16 +46,161 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\CustomersForms\AddCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\CustomersForms\AddCustomerForm.Designer.cs">
+      <DependentUpon>AddCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomersForms\CustomersListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersForms\CustomersListForm.Designer.cs">
+      <DependentUpon>CustomersListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomersForms\EditCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersForms\EditCustomerForm.Designer.cs">
+      <DependentUpon>EditCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeesForms\AddEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeesForms\AddEmployeeForm.Designer.cs">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeesForms\EditEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeesForms\EditEmployeeForm.Designer.cs">
+      <DependentUpon>EditEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeesForms\EmployeesListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeesForms\EmployeesListForm.Designer.cs">
+      <DependentUpon>EmployeesListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoiceLineItemsForms\AddInvoiceLineItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceLineItemsForms\AddInvoiceLineItemForm.Designer.cs">
+      <DependentUpon>AddInvoiceLineItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoiceLineItemsForms\EditInvoiceLineItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceLineItemsForms\EditInvoiceLineItemForm.Designer.cs">
+      <DependentUpon>EditInvoiceLineItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoiceLineItemsForms\InvoiceLineItemsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceLineItemsForms\InvoiceLineItemsListForm.Designer.cs">
+      <DependentUpon>InvoiceLineItemsListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoicesForms\AddInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoicesForms\AddInvoiceForm.Designer.cs">
+      <DependentUpon>AddInvoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoicesForms\EditInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoicesForms\EditInvoiceForm.Designer.cs">
+      <DependentUpon>EditInvoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoicesForms\InvoiceListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoicesForms\InvoiceListForm.Designer.cs">
+      <DependentUpon>InvoiceListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POForms\AddPOForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POForms\AddPOForm.Designer.cs">
+      <DependentUpon>AddPOForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\POForms\EditPOForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POForms\EditPOForm.Designer.cs">
+      <DependentUpon>EditPOForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\POForms\POListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POForms\POListForm.Designer.cs">
+      <DependentUpon>POListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\POLineItemsForms\AddPOLineItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POLineItemsForms\AddPOLineItemForm.Designer.cs">
+      <DependentUpon>AddPOLineItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\POLineItemsForms\EditPOLineItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POLineItemsForms\EditPOLineItemForm.Designer.cs">
+      <DependentUpon>EditPOLineItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\POLineItemsForms\POLineItemsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POLineItemsForms\POLineItemsListForm.Designer.cs">
+      <DependentUpon>POLineItemsListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ServicesForms\AddServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ServicesForms\AddServiceForm.Designer.cs">
+      <DependentUpon>AddServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ServicesForms\EditServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ServicesForms\EditServiceForm.Designer.cs">
+      <DependentUpon>EditServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ServicesForms\ServicesListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ServicesForms\ServicesListForm.Designer.cs">
+      <DependentUpon>ServicesListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VendorsForms\AddVendorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VendorsForms\AddVendorForm.Designer.cs">
+      <DependentUpon>AddVendorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VendorsForms\EditVendorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VendorsForms\EditVendorForm.Designer.cs">
+      <DependentUpon>EditVendorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VendorsForms\VendorsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VendorsForms\VendorsListForm.Designer.cs">
+      <DependentUpon>VendorsListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

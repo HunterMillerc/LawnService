@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MillersLawnService
+namespace MillersLawnService.Forms.VendorsForms
 {
-    public partial class frmMain : Form
+    public partial class VendorsListForm : Form
     {
-        public frmMain()
+        public VendorsListForm()
         {
             InitializeComponent();
         }
