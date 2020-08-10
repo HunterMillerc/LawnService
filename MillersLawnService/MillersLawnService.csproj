@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\grass.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -75,12 +78,6 @@
     </Compile>
     <Compile Include="Forms\CustomersForms\CustomersListForm.Designer.cs">
       <DependentUpon>CustomersListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CustomersForms\EditCustomerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CustomersForms\EditCustomerForm.Designer.cs">
-      <DependentUpon>EditCustomerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EmployeesForms\AddEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -250,9 +247,13 @@
     <Compile Include="State.cs">
       <DependentUpon>LawnServiceDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validators.cs" />
     <Compile Include="Vendor.cs">
       <DependentUpon>LawnServiceDb.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\CustomersForms\AddCustomerForm.resx">
+      <DependentUpon>AddCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomersForms\CustomersListForm.resx">
       <DependentUpon>CustomersListForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,13 +262,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EntityDeploy Include="LawnServiceDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LawnServiceDb.Designer.cs</LastGenOutput>
@@ -303,6 +299,9 @@
       <DependentUpon>LawnServiceDb.edmx</DependentUpon>
       <LastGenOutput>LawnServiceDb.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\grass.jpg" />
+    <Content Include="Resources\Search.png" />
+    <None Include="Resources\grass.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

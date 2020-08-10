@@ -81,9 +81,9 @@
             // btnMainMnuInvoices
             // 
             this.btnMainMnuInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuInvoices.Location = new System.Drawing.Point(541, 421);
+            this.btnMainMnuInvoices.Location = new System.Drawing.Point(502, 421);
             this.btnMainMnuInvoices.Name = "btnMainMnuInvoices";
-            this.btnMainMnuInvoices.Size = new System.Drawing.Size(172, 57);
+            this.btnMainMnuInvoices.Size = new System.Drawing.Size(243, 57);
             this.btnMainMnuInvoices.TabIndex = 6;
             this.btnMainMnuInvoices.Text = "Invoices";
             this.btnMainMnuInvoices.UseVisualStyleBackColor = true;
@@ -147,9 +147,9 @@
             // btnMainMnuPOLineItems
             // 
             this.btnMainMnuPOLineItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuPOLineItems.Location = new System.Drawing.Point(126, 497);
+            this.btnMainMnuPOLineItems.Location = new System.Drawing.Point(107, 497);
             this.btnMainMnuPOLineItems.Name = "btnMainMnuPOLineItems";
-            this.btnMainMnuPOLineItems.Size = new System.Drawing.Size(172, 57);
+            this.btnMainMnuPOLineItems.Size = new System.Drawing.Size(220, 57);
             this.btnMainMnuPOLineItems.TabIndex = 5;
             this.btnMainMnuPOLineItems.Text = "PO Line Items";
             this.btnMainMnuPOLineItems.UseVisualStyleBackColor = true;
