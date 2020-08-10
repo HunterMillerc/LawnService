@@ -381,7 +381,7 @@
             this.customerCityTextBox.Name = "customerCityTextBox";
             this.customerCityTextBox.ReadOnly = true;
             this.customerCityTextBox.Size = new System.Drawing.Size(216, 27);
-            this.customerCityTextBox.TabIndex = 5;
+            this.customerCityTextBox.TabIndex = 4;
             this.customerCityTextBox.TextChanged += new System.EventHandler(this.customerCityTextBox_TextChanged);
             // 
             // customerFNameTextBox
@@ -392,7 +392,7 @@
             this.customerFNameTextBox.Name = "customerFNameTextBox";
             this.customerFNameTextBox.ReadOnly = true;
             this.customerFNameTextBox.Size = new System.Drawing.Size(216, 27);
-            this.customerFNameTextBox.TabIndex = 7;
+            this.customerFNameTextBox.TabIndex = 0;
             this.customerFNameTextBox.TextChanged += new System.EventHandler(this.customerFNameTextBox_TextChanged);
             // 
             // customerIDTextBox
@@ -403,7 +403,7 @@
             this.customerIDTextBox.Name = "customerIDTextBox";
             this.customerIDTextBox.ReadOnly = true;
             this.customerIDTextBox.Size = new System.Drawing.Size(216, 27);
-            this.customerIDTextBox.TabIndex = 9;
+            this.customerIDTextBox.TabIndex = 20;
             // 
             // customerLNameTextBox
             // 
@@ -413,7 +413,7 @@
             this.customerLNameTextBox.Name = "customerLNameTextBox";
             this.customerLNameTextBox.ReadOnly = true;
             this.customerLNameTextBox.Size = new System.Drawing.Size(216, 27);
-            this.customerLNameTextBox.TabIndex = 11;
+            this.customerLNameTextBox.TabIndex = 1;
             this.customerLNameTextBox.TextChanged += new System.EventHandler(this.customerLNameTextBox_TextChanged);
             // 
             // customerPhoneNumTextBox
@@ -425,7 +425,7 @@
             this.customerPhoneNumTextBox.Name = "customerPhoneNumTextBox";
             this.customerPhoneNumTextBox.ReadOnly = true;
             this.customerPhoneNumTextBox.Size = new System.Drawing.Size(216, 27);
-            this.customerPhoneNumTextBox.TabIndex = 13;
+            this.customerPhoneNumTextBox.TabIndex = 2;
             this.customerPhoneNumTextBox.TextChanged += new System.EventHandler(this.customerPhoneNumTextBox_TextChanged);
             // 
             // customerZipCodeTextBox
@@ -437,7 +437,7 @@
             this.customerZipCodeTextBox.Name = "customerZipCodeTextBox";
             this.customerZipCodeTextBox.ReadOnly = true;
             this.customerZipCodeTextBox.Size = new System.Drawing.Size(216, 27);
-            this.customerZipCodeTextBox.TabIndex = 17;
+            this.customerZipCodeTextBox.TabIndex = 6;
             this.customerZipCodeTextBox.TextChanged += new System.EventHandler(this.customerZipCodeTextBox_TextChanged);
             // 
             // btnCustomerFormAddCust
@@ -446,7 +446,7 @@
             this.btnCustomerFormAddCust.Location = new System.Drawing.Point(11, 563);
             this.btnCustomerFormAddCust.Name = "btnCustomerFormAddCust";
             this.btnCustomerFormAddCust.Size = new System.Drawing.Size(369, 57);
-            this.btnCustomerFormAddCust.TabIndex = 19;
+            this.btnCustomerFormAddCust.TabIndex = 8;
             this.btnCustomerFormAddCust.Text = "Add Customer";
             this.btnCustomerFormAddCust.UseVisualStyleBackColor = true;
             this.btnCustomerFormAddCust.Click += new System.EventHandler(this.btnCustomerFormAddCust_Click);
@@ -457,7 +457,7 @@
             this.btnCustomerFormEditCust.Location = new System.Drawing.Point(11, 626);
             this.btnCustomerFormEditCust.Name = "btnCustomerFormEditCust";
             this.btnCustomerFormEditCust.Size = new System.Drawing.Size(369, 57);
-            this.btnCustomerFormEditCust.TabIndex = 20;
+            this.btnCustomerFormEditCust.TabIndex = 9;
             this.btnCustomerFormEditCust.Text = "Edit Customer";
             this.btnCustomerFormEditCust.UseVisualStyleBackColor = true;
             this.btnCustomerFormEditCust.Click += new System.EventHandler(this.btnCustomerFormEditCust_Click);
@@ -468,7 +468,7 @@
             this.btnCustomerFormDeleteCust.Location = new System.Drawing.Point(11, 689);
             this.btnCustomerFormDeleteCust.Name = "btnCustomerFormDeleteCust";
             this.btnCustomerFormDeleteCust.Size = new System.Drawing.Size(369, 57);
-            this.btnCustomerFormDeleteCust.TabIndex = 21;
+            this.btnCustomerFormDeleteCust.TabIndex = 10;
             this.btnCustomerFormDeleteCust.Text = "Delete Customer";
             this.btnCustomerFormDeleteCust.UseVisualStyleBackColor = true;
             this.btnCustomerFormDeleteCust.Click += new System.EventHandler(this.btnCustomerFormDeleteCust_Click);
@@ -489,7 +489,7 @@
             this.btnCustomerFormSaveChanges.Location = new System.Drawing.Point(86, 455);
             this.btnCustomerFormSaveChanges.Name = "btnCustomerFormSaveChanges";
             this.btnCustomerFormSaveChanges.Size = new System.Drawing.Size(220, 57);
-            this.btnCustomerFormSaveChanges.TabIndex = 23;
+            this.btnCustomerFormSaveChanges.TabIndex = 7;
             this.btnCustomerFormSaveChanges.Text = "Save Changes";
             this.btnCustomerFormSaveChanges.UseVisualStyleBackColor = true;
             this.btnCustomerFormSaveChanges.Click += new System.EventHandler(this.btnCustomerFormSaveChanges_Click);
@@ -514,7 +514,7 @@
             this.customerStateComboBox.Location = new System.Drawing.Point(185, 373);
             this.customerStateComboBox.Name = "customerStateComboBox";
             this.customerStateComboBox.Size = new System.Drawing.Size(216, 28);
-            this.customerStateComboBox.TabIndex = 24;
+            this.customerStateComboBox.TabIndex = 5;
             this.customerStateComboBox.ValueMember = "StateCode";
             // 
             // btnCustomerFormExit
@@ -523,7 +523,7 @@
             this.btnCustomerFormExit.Location = new System.Drawing.Point(1319, 689);
             this.btnCustomerFormExit.Name = "btnCustomerFormExit";
             this.btnCustomerFormExit.Size = new System.Drawing.Size(220, 57);
-            this.btnCustomerFormExit.TabIndex = 25;
+            this.btnCustomerFormExit.TabIndex = 11;
             this.btnCustomerFormExit.Text = "Exit";
             this.btnCustomerFormExit.UseVisualStyleBackColor = true;
             this.btnCustomerFormExit.Click += new System.EventHandler(this.btnCustomerFormExit_Click);
@@ -652,7 +652,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomersListForm";
             this.Text = "Customers";
-            this.Load += new System.EventHandler(this.CustomersListForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();

@@ -16,7 +16,7 @@ namespace MillersLawnService.Forms.CustomersForms
 {
     public partial class CustomersListForm : Form
     {
-        public LawnServiceEntities CustDb;
+        LawnServiceEntities CustDb;
         AddCustomerForm addCustomerForm;
 
         public CustomersListForm()
@@ -41,11 +41,6 @@ namespace MillersLawnService.Forms.CustomersForms
             var states = (from state in CustDb.States
                           select state.StateCode);
             filterByStateCbo.Items.AddRange(states.ToArray());
-        }
-
-        private void CustomersListForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCustomerFormAddCust_Click(object sender, EventArgs e)
@@ -109,6 +104,7 @@ namespace MillersLawnService.Forms.CustomersForms
 
         private void btnCustomerFormSaveChanges_Click(object sender, EventArgs e)
         {
+            //TODO: Catch concurrency error
             CustDb.SaveChanges();
             EnableOrDisableEdit();
         }
@@ -118,6 +114,7 @@ namespace MillersLawnService.Forms.CustomersForms
             this.Close();
         }
 
+        //Deletes customer
         private void btnCustomerFormDeleteCust_Click(object sender, EventArgs e)
         {
             int currentCust = Convert.ToInt32(customerIDTextBox.Text);
@@ -133,9 +130,9 @@ namespace MillersLawnService.Forms.CustomersForms
                     CustDb.Customers.Remove(editedCust);
                     CustDb.SaveChanges();
                 }
-                catch(DbUpdateConcurrencyException ex)
+                catch(DbUpdateConcurrencyException)
                 {
-                    ex.Entries.Single().Reload();
+                    this.Close();
                     if(CustDb.Entry(editedCust).State == EntityState.Detached)
                     {
                         MessageBox.Show("Another user has deleted that customer.", "Concurrency Error");
@@ -144,6 +141,15 @@ namespace MillersLawnService.Forms.CustomersForms
                     {
                         MessageBox.Show("Another user has updated that customer.", "Concurrency Error");
                     }
+                    CustomersListForm newForm = new CustomersListForm();
+                    newForm.Show();
+                }
+                catch(DbUpdateException)
+                { 
+                    this.Close();
+                    MessageBox.Show("Unable to delete customer. The customer has invoices in the invoices table.", "Customer Not Deleted");
+                    CustomersListForm newForm = new CustomersListForm();
+                    newForm.Show();
                 }
                 catch(Exception ex)
                 {
@@ -152,6 +158,7 @@ namespace MillersLawnService.Forms.CustomersForms
             }
         }
 
+        //Enable save button for edits
         private void EnableSaveBtn()
         {
             if (!ValidName(customerFNameTextBox.Text) || !ValidName(customerLNameTextBox.Text) || !ValidPhone(customerPhoneNumTextBox.Text) || customerAddressTextBox.Text == "" || !ValidText(customerCityTextBox.Text) || customerStateComboBox.SelectedIndex == -1 || !ValidZipCode(customerZipCodeTextBox.Text))
@@ -164,6 +171,7 @@ namespace MillersLawnService.Forms.CustomersForms
             }
         }
 
+        //Enable editing/disable it 
         private void EnableOrDisableEdit()
         {
             customerFNameTextBox.ReadOnly = !customerFNameTextBox.ReadOnly;
@@ -176,6 +184,7 @@ namespace MillersLawnService.Forms.CustomersForms
             btnCustomerFormSaveChanges.Visible = !btnCustomerFormSaveChanges.Visible;
         }
 
+        //Changes binding datasource for filtering
         private void btnSearchByLastName_Click(object sender, EventArgs e)
         {
             var filteredData = CustDb.Customers.Local.ToBindingList().Where(x => x.CustomerLName == searchByLastNameCbo.Text);

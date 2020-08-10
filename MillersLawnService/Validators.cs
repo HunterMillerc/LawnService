@@ -36,5 +36,12 @@ namespace MillersLawnService
             Regex regex = new Regex("^\\d{5}(?:[-\\s]\\d{4})?$");
             return regex.IsMatch(zip);
         }
+
+        //Validates money 
+        public static bool ValidMoney(string money)
+        {
+            Regex regex = new Regex("^[0-9]{1,3}(?:,?[0-9]{3})*(?:\\.[0-9]{2})?$");
+            return regex.IsMatch(money);
+        }
     }
 }

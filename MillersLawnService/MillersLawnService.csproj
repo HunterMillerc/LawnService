@@ -85,12 +85,6 @@
     <Compile Include="Forms\EmployeesForms\AddEmployeeForm.Designer.cs">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EmployeesForms\EditEmployeeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EmployeesForms\EditEmployeeForm.Designer.cs">
-      <DependentUpon>EditEmployeeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\EmployeesForms\EmployeesListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +251,12 @@
     <EmbeddedResource Include="Forms\CustomersForms\CustomersListForm.resx">
       <DependentUpon>CustomersListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeesForms\AddEmployeeForm.resx">
+      <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeesForms\EmployeesListForm.resx">
+      <DependentUpon>EmployeesListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +273,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Customer.datasource" />
+    <None Include="Properties\DataSources\Employee.datasource" />
     <None Include="Properties\DataSources\State.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
