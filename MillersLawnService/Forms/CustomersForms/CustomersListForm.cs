@@ -52,19 +52,26 @@ namespace MillersLawnService.Forms.CustomersForms
 
         private void btnCustomerFormEditCust_Click(object sender, EventArgs e)
         {
-            EnableOrDisableEdit();
-            int currentCust = Convert.ToInt32(customerIDTextBox.Text);
-            var editedCust = (from customer in CustDb.Customers
-                              where customer.CustomerID == currentCust
-                              select customer).Single();
+            if(customerIDTextBox.Text == "")
+            {
+                MessageBox.Show("No customer selected. Please select a customer to edit.", "Edit Error");
+            }
+            else
+            {
+                EnableOrDisableEdit();
+                int currentCust = Convert.ToInt32(customerIDTextBox.Text);
+                var editedCust = (from customer in CustDb.Customers
+                                  where customer.CustomerID == currentCust
+                                  select customer).Single();
 
-            editedCust.CustomerFName = customerFNameTextBox.Text;
-            editedCust.CustomerLName = customerLNameTextBox.Text;
-            editedCust.CustomerPhoneNum = customerPhoneNumTextBox.Text;
-            editedCust.CustomerAddress = customerAddressTextBox.Text;
-            editedCust.CustomerCity = customerCityTextBox.Text;
-            editedCust.CustomerState = customerStateComboBox.SelectedValue.ToString();
-            editedCust.CustomerZipCode = customerZipCodeTextBox.Text;
+                editedCust.CustomerFName = customerFNameTextBox.Text;
+                editedCust.CustomerLName = customerLNameTextBox.Text;
+                editedCust.CustomerPhoneNum = customerPhoneNumTextBox.Text;
+                editedCust.CustomerAddress = customerAddressTextBox.Text;
+                editedCust.CustomerCity = customerCityTextBox.Text;
+                editedCust.CustomerState = customerStateComboBox.SelectedValue.ToString();
+                editedCust.CustomerZipCode = customerZipCodeTextBox.Text;
+            }
         }
 
         private void customerFNameTextBox_TextChanged(object sender, EventArgs e)
@@ -117,43 +124,50 @@ namespace MillersLawnService.Forms.CustomersForms
         //Deletes customer
         private void btnCustomerFormDeleteCust_Click(object sender, EventArgs e)
         {
-            int currentCust = Convert.ToInt32(customerIDTextBox.Text);
-            var editedCust = (from customer in CustDb.Customers
-                              where customer.CustomerID == currentCust
-                              select customer).Single();
-
-            DialogResult result = MessageBox.Show($"Delete {editedCust.CustomerFName} {editedCust.CustomerLName}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            if (customerIDTextBox.Text == "")
             {
-                try
+                MessageBox.Show("No customer selected. Please select a customer to delete.", "Delete Error");
+            }
+            else
+            {
+                int currentCust = Convert.ToInt32(customerIDTextBox.Text);
+                var editedCust = (from customer in CustDb.Customers
+                                  where customer.CustomerID == currentCust
+                                  select customer).Single();
+
+                DialogResult result = MessageBox.Show($"Delete {editedCust.CustomerFName} {editedCust.CustomerLName}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    CustDb.Customers.Remove(editedCust);
-                    CustDb.SaveChanges();
-                }
-                catch(DbUpdateConcurrencyException)
-                {
-                    this.Close();
-                    if(CustDb.Entry(editedCust).State == EntityState.Detached)
+                    try
                     {
-                        MessageBox.Show("Another user has deleted that customer.", "Concurrency Error");
+                        CustDb.Customers.Remove(editedCust);
+                        CustDb.SaveChanges();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        MessageBox.Show("Another user has updated that customer.", "Concurrency Error");
+                        this.Close();
+                        if (CustDb.Entry(editedCust).State == EntityState.Detached)
+                        {
+                            MessageBox.Show("Another user has deleted that customer.", "Concurrency Error");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Another user has updated that customer.", "Concurrency Error");
+                        }
+                        CustomersListForm newForm = new CustomersListForm();
+                        newForm.Show();
                     }
-                    CustomersListForm newForm = new CustomersListForm();
-                    newForm.Show();
-                }
-                catch(DbUpdateException)
-                { 
-                    this.Close();
-                    MessageBox.Show("Unable to delete customer. The customer has invoices in the invoices table.", "Customer Not Deleted");
-                    CustomersListForm newForm = new CustomersListForm();
-                    newForm.Show();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    catch (DbUpdateException)
+                    {
+                        this.Close();
+                        MessageBox.Show("Unable to delete customer. The customer has invoices in the invoices table.", "Customer Not Deleted");
+                        CustomersListForm newForm = new CustomersListForm();
+                        newForm.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    }
                 }
             }
         }

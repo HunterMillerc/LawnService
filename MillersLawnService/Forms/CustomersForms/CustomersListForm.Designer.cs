@@ -404,6 +404,7 @@
             this.customerIDTextBox.ReadOnly = true;
             this.customerIDTextBox.Size = new System.Drawing.Size(216, 27);
             this.customerIDTextBox.TabIndex = 20;
+            this.customerIDTextBox.TabStop = false;
             // 
             // customerLNameTextBox
             // 

@@ -49,20 +49,27 @@ namespace MillersLawnService.Forms.EmployeesForms
 
         private void btnEmployeeFormEditEmp_Click(object sender, EventArgs e)
         {
-            EnableOrDisableEdit();
-            int currentEmp = Convert.ToInt32(employeeIDTextBox.Text);
-            var editedEmp = (from employee in EmpDb.Employees
-                             where employee.EmployeeID == currentEmp
-                             select employee).Single();
+            if(employeeIDTextBox.Text == "")
+            {
+                MessageBox.Show("No employee selected. Please select an employee to edit.", "Edit Error");
+            }
+            else
+            {
+                EnableOrDisableEdit();
+                int currentEmp = Convert.ToInt32(employeeIDTextBox.Text);
+                var editedEmp = (from employee in EmpDb.Employees
+                                 where employee.EmployeeID == currentEmp
+                                 select employee).Single();
 
-            editedEmp.EmployeeFName = employeeFNameTextBox.Text;
-            editedEmp.EmployeeLName = employeeLNameTextBox.Text;
-            editedEmp.EmployeePhoneNum = employeePhoneNumTextBox.Text;
-            editedEmp.EmployeeAddress = employeeAddressTextBox.Text;
-            editedEmp.EmployeeCity = employeeCityTextBox.Text;
-            editedEmp.EmployeeState = employeeStateComboBox.SelectedValue.ToString();
-            editedEmp.EmployeeZipCode = employeeZipCodeTextBox.Text;
-            editedEmp.EmployeeCurrentPay = Convert.ToDecimal(employeeCurrentPayTextBox.Text);
+                editedEmp.EmployeeFName = employeeFNameTextBox.Text;
+                editedEmp.EmployeeLName = employeeLNameTextBox.Text;
+                editedEmp.EmployeePhoneNum = employeePhoneNumTextBox.Text;
+                editedEmp.EmployeeAddress = employeeAddressTextBox.Text;
+                editedEmp.EmployeeCity = employeeCityTextBox.Text;
+                editedEmp.EmployeeState = employeeStateComboBox.SelectedValue.ToString();
+                editedEmp.EmployeeZipCode = employeeZipCodeTextBox.Text;
+                editedEmp.EmployeeCurrentPay = Convert.ToDecimal(employeeCurrentPayTextBox.Text);
+            }
         }
 
         private void employeeFNameTextBox_TextChanged(object sender, EventArgs e)
@@ -120,41 +127,48 @@ namespace MillersLawnService.Forms.EmployeesForms
         //Deletes Employee
         private void btnEmployeeFormDeleteEmp_Click(object sender, EventArgs e)
         {
-            int currentEmp = Convert.ToInt32(employeeIDTextBox.Text);
-            var editedEmp = (from employee in EmpDb.Employees
-                             where employee.EmployeeID == currentEmp
-                             select employee).Single();
-
-            DialogResult result = MessageBox.Show($"Delete {editedEmp.EmployeeFName} {editedEmp.EmployeeLName}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            if(employeeIDTextBox.Text == "")
             {
-                try
+                MessageBox.Show("No employee selected. Please select an employee to delete", "Delete Error");
+            }
+            else
+            {
+                int currentEmp = Convert.ToInt32(employeeIDTextBox.Text);
+                var editedEmp = (from employee in EmpDb.Employees
+                                 where employee.EmployeeID == currentEmp
+                                 select employee).Single();
+
+                DialogResult result = MessageBox.Show($"Delete {editedEmp.EmployeeFName} {editedEmp.EmployeeLName}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    EmpDb.Employees.Remove(editedEmp);
-                    EmpDb.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    this.Close();
-                    if(EmpDb.Entry(editedEmp).State == EntityState.Detached)
+                    try
                     {
-                        MessageBox.Show("Another user has deleted that employee.", "Concurrency Error");
+                        EmpDb.Employees.Remove(editedEmp);
+                        EmpDb.SaveChanges();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        MessageBox.Show("Another user has updated that employee.", "Concurrency Error");
+                        this.Close();
+                        if (EmpDb.Entry(editedEmp).State == EntityState.Detached)
+                        {
+                            MessageBox.Show("Another user has deleted that employee.", "Concurrency Error");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Another user has updated that employee.", "Concurrency Error");
+                        }
                     }
-                }
-                catch (DbUpdateException)
-                {
-                    this.Close();
-                    MessageBox.Show("Unable to delete employee. The employee is labeled as an employee that worked on an invoice.", "Employee Not Deleted");
-                    EmployeesListForm newForm = new EmployeesListForm();
-                    newForm.Show();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    catch (DbUpdateException)
+                    {
+                        this.Close();
+                        MessageBox.Show("Unable to delete employee. The employee is labeled as an employee that worked on an invoice.", "Employee Not Deleted");
+                        EmployeesListForm newForm = new EmployeesListForm();
+                        newForm.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    }
                 }
             }
         }
