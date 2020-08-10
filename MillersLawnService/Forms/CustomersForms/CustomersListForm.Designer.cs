@@ -433,6 +433,7 @@
             this.customerZipCodeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CustomerZipCode", true));
             this.customerZipCodeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerZipCodeTextBox.Location = new System.Drawing.Point(185, 406);
+            this.customerZipCodeTextBox.MaxLength = 10;
             this.customerZipCodeTextBox.Name = "customerZipCodeTextBox";
             this.customerZipCodeTextBox.ReadOnly = true;
             this.customerZipCodeTextBox.Size = new System.Drawing.Size(216, 27);
@@ -475,9 +476,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1398, 57);
+            this.pictureBox1.Location = new System.Drawing.Point(1416, 72);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 112);
+            this.pictureBox1.Size = new System.Drawing.Size(115, 97);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
@@ -506,6 +507,7 @@
             this.customerStateComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CustomerState", true));
             this.customerStateComboBox.DataSource = this.stateBindingSource;
             this.customerStateComboBox.DisplayMember = "StateCode";
+            this.customerStateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.customerStateComboBox.Enabled = false;
             this.customerStateComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerStateComboBox.FormattingEnabled = true;
@@ -577,13 +579,12 @@
             // filterByStateLabel
             // 
             this.filterByStateLabel.Name = "filterByStateLabel";
-            this.filterByStateLabel.Size = new System.Drawing.Size(111, 25);
-            this.filterByStateLabel.Text = "toolStripLabel1";
+            this.filterByStateLabel.Size = new System.Drawing.Size(107, 25);
+            this.filterByStateLabel.Text = "Filter By State: ";
             // 
             // filterByStateCbo
             // 
-            this.filterByStateCbo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.filterByStateCbo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.filterByStateCbo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterByStateCbo.Name = "filterByStateCbo";
             this.filterByStateCbo.Size = new System.Drawing.Size(121, 28);
             // 

@@ -134,6 +134,7 @@
             // 
             this.customerStateComboBox.DataSource = this.stateBindingSource;
             this.customerStateComboBox.DisplayMember = "StateCode";
+            this.customerStateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.customerStateComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerStateComboBox.FormattingEnabled = true;
             this.customerStateComboBox.Location = new System.Drawing.Point(208, 382);

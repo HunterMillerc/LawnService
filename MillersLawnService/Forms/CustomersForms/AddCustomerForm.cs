@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MillersLawnService.Validators;
 
 namespace MillersLawnService.Forms.CustomersForms
 {
@@ -86,7 +87,7 @@ namespace MillersLawnService.Forms.CustomersForms
 
         private void EnableSaveBtn()
         {
-            if (customerFNameTextBox.Text == "" || customerLNameTextBox.Text == "" || customerPhoneNumTextBox.Text == "" || customerAddressTextBox.Text == "" || customerCityTextBox.Text == "" || customerStateComboBox.SelectedIndex == -1 || customerZipCodeTextBox.Text == "")
+            if (!ValidName(customerFNameTextBox.Text) || !ValidName(customerLNameTextBox.Text) || !ValidPhone(customerPhoneNumTextBox.Text) || customerAddressTextBox.Text == "" || !ValidText(customerCityTextBox.Text) || customerStateComboBox.SelectedIndex == -1 || !ValidZipCode(customerZipCodeTextBox.Text))
             {
                 btnAddCustomerFormSaveChanges.Enabled = false;
             }

@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MillersLawnService.Validators;
 
 namespace MillersLawnService.Forms.CustomersForms
 {
@@ -153,7 +154,7 @@ namespace MillersLawnService.Forms.CustomersForms
 
         private void EnableSaveBtn()
         {
-            if (customerFNameTextBox.Text == "" || customerLNameTextBox.Text == "" || customerPhoneNumTextBox.Text == "" || customerAddressTextBox.Text == "" || customerCityTextBox.Text == "" || customerStateComboBox.SelectedIndex == -1 || customerZipCodeTextBox.Text == "")
+            if (!ValidName(customerFNameTextBox.Text) || !ValidName(customerLNameTextBox.Text) || !ValidPhone(customerPhoneNumTextBox.Text) || customerAddressTextBox.Text == "" || !ValidText(customerCityTextBox.Text) || customerStateComboBox.SelectedIndex == -1 || !ValidZipCode(customerZipCodeTextBox.Text))
             {
                 btnCustomerFormSaveChanges.Enabled = false;
             }
@@ -179,17 +180,21 @@ namespace MillersLawnService.Forms.CustomersForms
         {
             var filteredData = CustDb.Customers.Local.ToBindingList().Where(x => x.CustomerLName == searchByLastNameCbo.Text);
             this.customerBindingSource.DataSource = filteredData.Count() > 0 ? filteredData : filteredData.ToArray();
+            filterByStateCbo.SelectedIndex = -1;
         }
 
         private void btnFilterByState_Click(object sender, EventArgs e)
         {
             var filteredData = CustDb.Customers.Local.ToBindingList().Where(x => x.CustomerState == filterByStateCbo.Text);
             this.customerBindingSource.DataSource = filteredData.Count() > 0 ? filteredData : filteredData.ToArray();
+            searchByLastNameCbo.SelectedIndex = -1;
         }
 
         private void btnSearchByAll_Click(object sender, EventArgs e)
         {
             this.customerBindingSource.DataSource = CustDb.Customers.Local.ToBindingList();
+            filterByStateCbo.SelectedIndex = -1;
+            searchByLastNameCbo.SelectedIndex = -1;
         }
     }
 }
