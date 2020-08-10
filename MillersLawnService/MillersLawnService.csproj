@@ -176,12 +176,6 @@
     <Compile Include="Forms\ServicesForms\AddServiceForm.Designer.cs">
       <DependentUpon>AddServiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ServicesForms\EditServiceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ServicesForms\EditServiceForm.Designer.cs">
-      <DependentUpon>EditServiceForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ServicesForms\ServicesListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +248,12 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ServicesForms\AddServiceForm.resx">
+      <DependentUpon>AddServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ServicesForms\ServicesListForm.resx">
+      <DependentUpon>ServicesListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\VendorsForms\AddVendorForm.resx">
       <DependentUpon>AddVendorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +274,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Customer.datasource" />
     <None Include="Properties\DataSources\Employee.datasource" />
+    <None Include="Properties\DataSources\Service.datasource" />
     <None Include="Properties\DataSources\State.datasource" />
     <None Include="Properties\DataSources\Vendor.datasource" />
     <None Include="Properties\Settings.settings">
