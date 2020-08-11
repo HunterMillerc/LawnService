@@ -55,22 +55,10 @@ namespace MillersLawnService
             pOListForm.Show();
         }
 
-        private void btnMainMnuPOLineItems_Click(object sender, EventArgs e)
-        {
-            POLineItemsListForm pOLineItemsListForm = new POLineItemsListForm();
-            pOLineItemsListForm.Show();
-        }
-
         private void btnMainMnuInvoices_Click(object sender, EventArgs e)
         {
             InvoiceListForm invoiceListForm = new InvoiceListForm();
             invoiceListForm.Show();
-        }
-
-        private void btnMainMnuInvoiceLineItems_Click(object sender, EventArgs e)
-        {
-            InvoiceLineItemsListForm invoiceLineItemsListForm = new InvoiceLineItemsListForm();
-            invoiceLineItemsListForm.Show();
         }
 
         private void btnMainMnuExit_Click(object sender, EventArgs e)

@@ -33,12 +33,10 @@
             this.txtMainFrmTitle = new System.Windows.Forms.TextBox();
             this.btnMainMnuCustomers = new System.Windows.Forms.Button();
             this.btnMainMnuInvoices = new System.Windows.Forms.Button();
-            this.btnMainMnuInvoiceLineItems = new System.Windows.Forms.Button();
             this.btnMainMnuServices = new System.Windows.Forms.Button();
             this.MainMnuEmployees = new System.Windows.Forms.Button();
             this.btnMainMnuVendors = new System.Windows.Forms.Button();
             this.btnMainMnuPurchaseOrders = new System.Windows.Forms.Button();
-            this.btnMainMnuPOLineItems = new System.Windows.Forms.Button();
             this.btnMainMnuExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainFrmPicture)).BeginInit();
             this.SuspendLayout();
@@ -81,24 +79,13 @@
             // btnMainMnuInvoices
             // 
             this.btnMainMnuInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuInvoices.Location = new System.Drawing.Point(502, 421);
+            this.btnMainMnuInvoices.Location = new System.Drawing.Point(513, 469);
             this.btnMainMnuInvoices.Name = "btnMainMnuInvoices";
             this.btnMainMnuInvoices.Size = new System.Drawing.Size(243, 57);
             this.btnMainMnuInvoices.TabIndex = 6;
             this.btnMainMnuInvoices.Text = "Invoices";
             this.btnMainMnuInvoices.UseVisualStyleBackColor = true;
             this.btnMainMnuInvoices.Click += new System.EventHandler(this.btnMainMnuInvoices_Click);
-            // 
-            // btnMainMnuInvoiceLineItems
-            // 
-            this.btnMainMnuInvoiceLineItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuInvoiceLineItems.Location = new System.Drawing.Point(502, 497);
-            this.btnMainMnuInvoiceLineItems.Name = "btnMainMnuInvoiceLineItems";
-            this.btnMainMnuInvoiceLineItems.Size = new System.Drawing.Size(243, 57);
-            this.btnMainMnuInvoiceLineItems.TabIndex = 7;
-            this.btnMainMnuInvoiceLineItems.Text = "Invoice Line Items";
-            this.btnMainMnuInvoiceLineItems.UseVisualStyleBackColor = true;
-            this.btnMainMnuInvoiceLineItems.Click += new System.EventHandler(this.btnMainMnuInvoiceLineItems_Click);
             // 
             // btnMainMnuServices
             // 
@@ -136,24 +123,13 @@
             // btnMainMnuPurchaseOrders
             // 
             this.btnMainMnuPurchaseOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuPurchaseOrders.Location = new System.Drawing.Point(107, 421);
+            this.btnMainMnuPurchaseOrders.Location = new System.Drawing.Point(102, 469);
             this.btnMainMnuPurchaseOrders.Name = "btnMainMnuPurchaseOrders";
             this.btnMainMnuPurchaseOrders.Size = new System.Drawing.Size(220, 57);
             this.btnMainMnuPurchaseOrders.TabIndex = 4;
             this.btnMainMnuPurchaseOrders.Text = "Purchase Orders";
             this.btnMainMnuPurchaseOrders.UseVisualStyleBackColor = true;
             this.btnMainMnuPurchaseOrders.Click += new System.EventHandler(this.btnMainMnuPurchaseOrders_Click);
-            // 
-            // btnMainMnuPOLineItems
-            // 
-            this.btnMainMnuPOLineItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuPOLineItems.Location = new System.Drawing.Point(107, 497);
-            this.btnMainMnuPOLineItems.Name = "btnMainMnuPOLineItems";
-            this.btnMainMnuPOLineItems.Size = new System.Drawing.Size(220, 57);
-            this.btnMainMnuPOLineItems.TabIndex = 5;
-            this.btnMainMnuPOLineItems.Text = "PO Line Items";
-            this.btnMainMnuPOLineItems.UseVisualStyleBackColor = true;
-            this.btnMainMnuPOLineItems.Click += new System.EventHandler(this.btnMainMnuPOLineItems_Click);
             // 
             // btnMainMnuExit
             // 
@@ -172,12 +148,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 665);
             this.Controls.Add(this.btnMainMnuExit);
-            this.Controls.Add(this.btnMainMnuPOLineItems);
             this.Controls.Add(this.btnMainMnuPurchaseOrders);
             this.Controls.Add(this.btnMainMnuVendors);
             this.Controls.Add(this.MainMnuEmployees);
             this.Controls.Add(this.btnMainMnuServices);
-            this.Controls.Add(this.btnMainMnuInvoiceLineItems);
             this.Controls.Add(this.btnMainMnuInvoices);
             this.Controls.Add(this.btnMainMnuCustomers);
             this.Controls.Add(this.txtMainFrmTitle);
@@ -197,12 +171,10 @@
         private System.Windows.Forms.TextBox txtMainFrmTitle;
         private System.Windows.Forms.Button btnMainMnuCustomers;
         private System.Windows.Forms.Button btnMainMnuInvoices;
-        private System.Windows.Forms.Button btnMainMnuInvoiceLineItems;
         private System.Windows.Forms.Button btnMainMnuServices;
         private System.Windows.Forms.Button MainMnuEmployees;
         private System.Windows.Forms.Button btnMainMnuVendors;
         private System.Windows.Forms.Button btnMainMnuPurchaseOrders;
-        private System.Windows.Forms.Button btnMainMnuPOLineItems;
         private System.Windows.Forms.Button btnMainMnuExit;
     }
 }

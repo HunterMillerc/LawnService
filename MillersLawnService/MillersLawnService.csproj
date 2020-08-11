@@ -245,6 +245,9 @@
     <EmbeddedResource Include="Forms\EmployeesForms\EmployeesListForm.resx">
       <DependentUpon>EmployeesListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InvoicesForms\InvoiceListForm.resx">
+      <DependentUpon>InvoiceListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +277,8 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Customer.datasource" />
     <None Include="Properties\DataSources\Employee.datasource" />
+    <None Include="Properties\DataSources\Invoice.datasource" />
+    <None Include="Properties\DataSources\InvoiceLineItem.datasource" />
     <None Include="Properties\DataSources\Service.datasource" />
     <None Include="Properties\DataSources\State.datasource" />
     <None Include="Properties\DataSources\Vendor.datasource" />
