@@ -26,13 +26,6 @@ namespace MillersLawnService.Forms.InvoicesForms
             invoicesDb.Invoices.Load();
             invoicesDb.InvoiceLineItems.Load();
             this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
-
-            //Populate cboFilterByName combobox for list of current customer names in database
-            
-            cboCustNameFilter.ComboBox.DataSource = invoicesDb.Customers.Local.ToList();
-            cboCustNameFilter.ComboBox.DisplayMember = "CustomerLName";
-            cboCustNameFilter.ComboBox.ValueMember = "CustomerLName";
-
             
         }
 
@@ -41,6 +34,11 @@ namespace MillersLawnService.Forms.InvoicesForms
             FilterInvoiceLineItemDataGridView();
             PopulateCustomInvoiceDataGridViewColumns();
             selectedInvoiceIDTextBox.Text = currentSelectedInvoiceId.ToString();
+
+            //Populate cboFilterByName combobox for list of current customer names in database
+            var lastNames = (from customer in invoicesDb.Customers
+                             select customer.CustomerLName).Distinct();
+            cboCustNameFilter.Items.AddRange(lastNames.ToArray());
         }
 
         private void invoiceDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -172,7 +170,15 @@ namespace MillersLawnService.Forms.InvoicesForms
 
         private void btnFilterByCustName_Click(object sender, EventArgs e)
         {
-            var filteredData = invoicesDb.Invoices.Local.ToBindingList().Where(x => x)
+            var filteredData = invoicesDb.Invoices.Local.ToBindingList().Where(x => x.tblCustomer.CustomerLName == cboCustNameFilter.Text);
+            this.invoiceBindingSource.DataSource = filteredData.Count() > 0 ? filteredData : filteredData.ToArray();
+            PopulateCustomInvoiceDataGridViewColumns();
+        }
+
+        private void btnShowAllInvoices_Click(object sender, EventArgs e)
+        {
+            this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
+            PopulateCustomInvoiceDataGridViewColumns();
         }
     }
 }

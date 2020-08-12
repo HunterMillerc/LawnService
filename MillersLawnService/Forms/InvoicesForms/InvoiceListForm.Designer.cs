@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceListForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.invoiceBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -231,9 +231,9 @@
             // 
             // Cost
             // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.Cost.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.Cost.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cost.HeaderText = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.ReadOnly = true;
@@ -282,9 +282,9 @@
             // 
             // InvoiceTotal
             // 
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.InvoiceTotal.HeaderText = "Invoice Total";
             this.InvoiceTotal.Name = "InvoiceTotal";
             this.InvoiceTotal.ReadOnly = true;
@@ -486,6 +486,7 @@
             this.btnShowAllInvoices.Name = "btnShowAllInvoices";
             this.btnShowAllInvoices.Size = new System.Drawing.Size(24, 25);
             this.btnShowAllInvoices.Text = "toolStripButton6";
+            this.btnShowAllInvoices.Click += new System.EventHandler(this.btnShowAllInvoices_Click);
             // 
             // invoiceLineItemBindingSource
             // 
@@ -529,9 +530,9 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn2.HeaderText = "Invoice Date";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
