@@ -79,7 +79,7 @@
             // btnMainMnuInvoices
             // 
             this.btnMainMnuInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuInvoices.Location = new System.Drawing.Point(513, 469);
+            this.btnMainMnuInvoices.Location = new System.Drawing.Point(300, 469);
             this.btnMainMnuInvoices.Name = "btnMainMnuInvoices";
             this.btnMainMnuInvoices.Size = new System.Drawing.Size(243, 57);
             this.btnMainMnuInvoices.TabIndex = 6;
@@ -129,6 +129,7 @@
             this.btnMainMnuPurchaseOrders.TabIndex = 4;
             this.btnMainMnuPurchaseOrders.Text = "Purchase Orders";
             this.btnMainMnuPurchaseOrders.UseVisualStyleBackColor = true;
+            this.btnMainMnuPurchaseOrders.Visible = false;
             this.btnMainMnuPurchaseOrders.Click += new System.EventHandler(this.btnMainMnuPurchaseOrders_Click);
             // 
             // btnMainMnuExit

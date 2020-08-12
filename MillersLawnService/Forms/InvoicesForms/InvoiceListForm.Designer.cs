@@ -29,12 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label invoiceDateLabel;
+            System.Windows.Forms.Label invoiceIDLabel1;
+            System.Windows.Forms.Label customerIDLabel;
+            System.Windows.Forms.Label customerLNameLabel1;
+            System.Windows.Forms.Label customerFNameLabel;
+            System.Windows.Forms.Label customerPhoneNumLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceListForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.invoiceBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.selectedInvoiceIDTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -44,10 +54,18 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.invoiceLineItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceLineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoiceDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerPhoneNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +74,7 @@
             this.lblInvoiceTitle = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -64,10 +83,6 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.selectedInvoiceIDTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.cboCustNameFilter = new System.Windows.Forms.ToolStripComboBox();
@@ -75,27 +90,98 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.btnShowAllInvoices = new System.Windows.Forms.ToolStripButton();
-            this.invoiceLineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBoxInvoiceBtns = new System.Windows.Forms.GroupBox();
+            this.customerPhoneNumTextBox = new System.Windows.Forms.TextBox();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSaveInvoice = new System.Windows.Forms.Button();
+            this.customerFNameTextBox = new System.Windows.Forms.TextBox();
+            this.customerLNameTextBox1 = new System.Windows.Forms.TextBox();
+            this.customerIDComboBox = new System.Windows.Forms.ComboBox();
+            this.invoiceIDTextBox = new System.Windows.Forms.TextBox();
+            this.invoiceDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.btnDeleteInvoice = new System.Windows.Forms.Button();
+            this.btnInvoiceEdit = new System.Windows.Forms.Button();
+            this.btnInvoiceAdd = new System.Windows.Forms.Button();
+            this.groupBoxInvoiceLineItemBtns = new System.Windows.Forms.GroupBox();
+            this.btnDeleteLineItem = new System.Windows.Forms.Button();
+            this.btnEditInvLineItem = new System.Windows.Forms.Button();
+            this.btnAddInvLineItem = new System.Windows.Forms.Button();
+            this.btnInvoicesExit = new System.Windows.Forms.Button();
+            invoiceDateLabel = new System.Windows.Forms.Label();
+            invoiceIDLabel1 = new System.Windows.Forms.Label();
+            customerIDLabel = new System.Windows.Forms.Label();
+            customerLNameLabel1 = new System.Windows.Forms.Label();
+            customerFNameLabel = new System.Windows.Forms.Label();
+            customerPhoneNumLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingNavigator)).BeginInit();
             this.invoiceBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceLineItemDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceLineItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceLineItemBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBoxInvoiceBtns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
+            this.groupBoxInvoiceLineItemBtns.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // invoiceDateLabel
+            // 
+            invoiceDateLabel.AutoSize = true;
+            invoiceDateLabel.Location = new System.Drawing.Point(102, 77);
+            invoiceDateLabel.Name = "invoiceDateLabel";
+            invoiceDateLabel.Size = new System.Drawing.Size(107, 20);
+            invoiceDateLabel.TabIndex = 12;
+            invoiceDateLabel.Text = "Invoice Date:";
+            // 
+            // invoiceIDLabel1
+            // 
+            invoiceIDLabel1.AutoSize = true;
+            invoiceIDLabel1.Location = new System.Drawing.Point(121, 38);
+            invoiceIDLabel1.Name = "invoiceIDLabel1";
+            invoiceIDLabel1.Size = new System.Drawing.Size(88, 20);
+            invoiceIDLabel1.TabIndex = 13;
+            invoiceIDLabel1.Text = "Invoice ID:";
+            // 
+            // customerIDLabel
+            // 
+            customerIDLabel.AutoSize = true;
+            customerIDLabel.Location = new System.Drawing.Point(100, 108);
+            customerIDLabel.Name = "customerIDLabel";
+            customerIDLabel.Size = new System.Drawing.Size(109, 20);
+            customerIDLabel.TabIndex = 18;
+            customerIDLabel.Text = "Customer ID:";
+            // 
+            // customerLNameLabel1
+            // 
+            customerLNameLabel1.AutoSize = true;
+            customerLNameLabel1.Location = new System.Drawing.Point(35, 176);
+            customerLNameLabel1.Name = "customerLNameLabel1";
+            customerLNameLabel1.Size = new System.Drawing.Size(174, 20);
+            customerLNameLabel1.TabIndex = 20;
+            customerLNameLabel1.Text = "Customer Last Name:";
+            // 
+            // customerFNameLabel
+            // 
+            customerFNameLabel.AutoSize = true;
+            customerFNameLabel.Location = new System.Drawing.Point(34, 144);
+            customerFNameLabel.Name = "customerFNameLabel";
+            customerFNameLabel.Size = new System.Drawing.Size(175, 20);
+            customerFNameLabel.TabIndex = 21;
+            customerFNameLabel.Text = "Customer First Name:";
+            // 
+            // customerPhoneNumLabel
+            // 
+            customerPhoneNumLabel.AutoSize = true;
+            customerPhoneNumLabel.Location = new System.Drawing.Point(6, 209);
+            customerPhoneNumLabel.Name = "customerPhoneNumLabel";
+            customerPhoneNumLabel.Size = new System.Drawing.Size(203, 20);
+            customerPhoneNumLabel.TabIndex = 23;
+            customerPhoneNumLabel.Text = "Customer Phone Number:";
             // 
             // invoiceBindingNavigator
             // 
@@ -128,12 +214,33 @@
             this.invoiceBindingNavigator.TabIndex = 0;
             this.invoiceBindingNavigator.Text = "bindingNavigator1";
             // 
+            // invoiceBindingSource
+            // 
+            this.invoiceBindingSource.DataSource = typeof(MillersLawnService.Invoice);
+            // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(139, 24);
+            this.toolStripLabel2.Text = "Invoice ID Selected:";
+            // 
+            // selectedInvoiceIDTextBox
+            // 
+            this.selectedInvoiceIDTextBox.Name = "selectedInvoiceIDTextBox";
+            this.selectedInvoiceIDTextBox.ReadOnly = true;
+            this.selectedInvoiceIDTextBox.Size = new System.Drawing.Size(100, 27);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -210,12 +317,34 @@
             this.dataGridViewTextBoxColumn9,
             this.Cost});
             this.invoiceLineItemDataGridView.DataSource = this.invoiceLineItemBindingSource;
+            this.invoiceLineItemDataGridView.Enabled = false;
             this.invoiceLineItemDataGridView.Location = new System.Drawing.Point(706, 562);
             this.invoiceLineItemDataGridView.Name = "invoiceLineItemDataGridView";
             this.invoiceLineItemDataGridView.ReadOnly = true;
             this.invoiceLineItemDataGridView.RowTemplate.Height = 24;
             this.invoiceLineItemDataGridView.Size = new System.Drawing.Size(1118, 309);
             this.invoiceLineItemDataGridView.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "InvoiceID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Invoice ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "ServiceID";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Service ID";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "EmployeeID";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Employee ID";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
             // EmployeeFirstName
             // 
@@ -229,14 +358,25 @@
             this.EmployeeLastName.Name = "EmployeeLastName";
             this.EmployeeLastName.ReadOnly = true;
             // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "ServiceNumOfHours";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Number of Hours Service Performed";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
             // Cost
             // 
             dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = "0";
+            dataGridViewCellStyle1.NullValue = "$0.00";
             this.Cost.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cost.HeaderText = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.ReadOnly = true;
+            // 
+            // invoiceLineItemBindingSource
+            // 
+            this.invoiceLineItemBindingSource.DataSource = typeof(MillersLawnService.InvoiceLineItem);
             // 
             // invoiceDataGridView
             // 
@@ -262,6 +402,30 @@
             this.invoiceDataGridView.TabIndex = 1;
             this.invoiceDataGridView.SelectionChanged += new System.EventHandler(this.invoiceDataGridView_SelectionChanged);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "InvoiceID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Invoice ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "InvoiceDate";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Invoice Date";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CustomerID";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Customer ID";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
             // CustomerFirstName
             // 
             this.CustomerFirstName.HeaderText = "Customer First Name";
@@ -283,7 +447,7 @@
             // InvoiceTotal
             // 
             dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0";
+            dataGridViewCellStyle3.NullValue = "$0.00";
             this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.InvoiceTotal.HeaderText = "Invoice Total";
             this.InvoiceTotal.Name = "InvoiceTotal";
@@ -345,6 +509,12 @@
             this.toolStripLabel1.Text = "of {0}";
             this.toolStripLabel1.ToolTipText = "Total number of items";
             // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(185, 24);
+            this.toolStripLabel3.Text = "Invoice Line Item Selected:";
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -404,29 +574,6 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(139, 24);
-            this.toolStripLabel2.Text = "Invoice ID Selected:";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(185, 24);
-            this.toolStripLabel3.Text = "Invoice Line Item Selected:";
-            // 
-            // selectedInvoiceIDTextBox
-            // 
-            this.selectedInvoiceIDTextBox.Name = "selectedInvoiceIDTextBox";
-            this.selectedInvoiceIDTextBox.ReadOnly = true;
-            this.selectedInvoiceIDTextBox.Size = new System.Drawing.Size(100, 27);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStrip1
             // 
@@ -488,75 +635,215 @@
             this.btnShowAllInvoices.Text = "toolStripButton6";
             this.btnShowAllInvoices.Click += new System.EventHandler(this.btnShowAllInvoices_Click);
             // 
-            // invoiceLineItemBindingSource
+            // pictureBox1
             // 
-            this.invoiceLineItemBindingSource.DataSource = typeof(MillersLawnService.InvoiceLineItem);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1719, 85);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(105, 98);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
-            // dataGridViewTextBoxColumn6
+            // groupBoxInvoiceBtns
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "InvoiceID";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Invoice ID";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.groupBoxInvoiceBtns.Controls.Add(customerPhoneNumLabel);
+            this.groupBoxInvoiceBtns.Controls.Add(this.customerPhoneNumTextBox);
+            this.groupBoxInvoiceBtns.Controls.Add(this.btnSaveInvoice);
+            this.groupBoxInvoiceBtns.Controls.Add(customerFNameLabel);
+            this.groupBoxInvoiceBtns.Controls.Add(this.customerFNameTextBox);
+            this.groupBoxInvoiceBtns.Controls.Add(customerLNameLabel1);
+            this.groupBoxInvoiceBtns.Controls.Add(this.customerLNameTextBox1);
+            this.groupBoxInvoiceBtns.Controls.Add(customerIDLabel);
+            this.groupBoxInvoiceBtns.Controls.Add(this.customerIDComboBox);
+            this.groupBoxInvoiceBtns.Controls.Add(invoiceIDLabel1);
+            this.groupBoxInvoiceBtns.Controls.Add(this.invoiceIDTextBox);
+            this.groupBoxInvoiceBtns.Controls.Add(invoiceDateLabel);
+            this.groupBoxInvoiceBtns.Controls.Add(this.invoiceDateDateTimePicker);
+            this.groupBoxInvoiceBtns.Controls.Add(this.btnDeleteInvoice);
+            this.groupBoxInvoiceBtns.Controls.Add(this.btnInvoiceEdit);
+            this.groupBoxInvoiceBtns.Controls.Add(this.btnInvoiceAdd);
+            this.groupBoxInvoiceBtns.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxInvoiceBtns.Location = new System.Drawing.Point(12, 98);
+            this.groupBoxInvoiceBtns.Name = "groupBoxInvoiceBtns";
+            this.groupBoxInvoiceBtns.Size = new System.Drawing.Size(682, 394);
+            this.groupBoxInvoiceBtns.TabIndex = 8;
+            this.groupBoxInvoiceBtns.TabStop = false;
+            this.groupBoxInvoiceBtns.Text = "Invoices";
             // 
-            // dataGridViewTextBoxColumn7
+            // customerPhoneNumTextBox
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "ServiceID";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Service ID";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "EmployeeID";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Employee ID";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "ServiceNumOfHours";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Number of Hours Service Performed";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "InvoiceID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Invoice ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Invoice Date";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "CustomerID";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Customer ID";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // invoiceBindingSource
-            // 
-            this.invoiceBindingSource.DataSource = typeof(MillersLawnService.Invoice);
+            this.customerPhoneNumTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CustomerPhoneNum", true));
+            this.customerPhoneNumTextBox.Location = new System.Drawing.Point(244, 206);
+            this.customerPhoneNumTextBox.Name = "customerPhoneNumTextBox";
+            this.customerPhoneNumTextBox.ReadOnly = true;
+            this.customerPhoneNumTextBox.Size = new System.Drawing.Size(227, 27);
+            this.customerPhoneNumTextBox.TabIndex = 24;
             // 
             // customerBindingSource
             // 
             this.customerBindingSource.DataSource = typeof(MillersLawnService.Customer);
+            // 
+            // btnSaveInvoice
+            // 
+            this.btnSaveInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveInvoice.Location = new System.Drawing.Point(456, 254);
+            this.btnSaveInvoice.Name = "btnSaveInvoice";
+            this.btnSaveInvoice.Size = new System.Drawing.Size(220, 57);
+            this.btnSaveInvoice.TabIndex = 23;
+            this.btnSaveInvoice.Text = "Save";
+            this.btnSaveInvoice.UseVisualStyleBackColor = true;
+            this.btnSaveInvoice.Visible = false;
+            this.btnSaveInvoice.Click += new System.EventHandler(this.btnSaveInvoice_Click);
+            // 
+            // customerFNameTextBox
+            // 
+            this.customerFNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CustomerFName", true));
+            this.customerFNameTextBox.Location = new System.Drawing.Point(244, 141);
+            this.customerFNameTextBox.Name = "customerFNameTextBox";
+            this.customerFNameTextBox.ReadOnly = true;
+            this.customerFNameTextBox.Size = new System.Drawing.Size(227, 27);
+            this.customerFNameTextBox.TabIndex = 22;
+            // 
+            // customerLNameTextBox1
+            // 
+            this.customerLNameTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CustomerLName", true));
+            this.customerLNameTextBox1.Location = new System.Drawing.Point(244, 173);
+            this.customerLNameTextBox1.Name = "customerLNameTextBox1";
+            this.customerLNameTextBox1.ReadOnly = true;
+            this.customerLNameTextBox1.Size = new System.Drawing.Size(227, 27);
+            this.customerLNameTextBox1.TabIndex = 21;
+            // 
+            // customerIDComboBox
+            // 
+            this.customerIDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceBindingSource, "CustomerID", true));
+            this.customerIDComboBox.DataSource = this.customerBindingSource;
+            this.customerIDComboBox.DisplayMember = "CustomerID";
+            this.customerIDComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.customerIDComboBox.Enabled = false;
+            this.customerIDComboBox.FormattingEnabled = true;
+            this.customerIDComboBox.Location = new System.Drawing.Point(244, 105);
+            this.customerIDComboBox.Name = "customerIDComboBox";
+            this.customerIDComboBox.Size = new System.Drawing.Size(227, 28);
+            this.customerIDComboBox.TabIndex = 19;
+            this.customerIDComboBox.ValueMember = "CustomerID";
+            // 
+            // invoiceIDTextBox
+            // 
+            this.invoiceIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceBindingSource, "InvoiceID", true));
+            this.invoiceIDTextBox.Location = new System.Drawing.Point(244, 35);
+            this.invoiceIDTextBox.Name = "invoiceIDTextBox";
+            this.invoiceIDTextBox.ReadOnly = true;
+            this.invoiceIDTextBox.Size = new System.Drawing.Size(227, 27);
+            this.invoiceIDTextBox.TabIndex = 14;
+            // 
+            // invoiceDateDateTimePicker
+            // 
+            this.invoiceDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.invoiceBindingSource, "InvoiceDate", true));
+            this.invoiceDateDateTimePicker.Enabled = false;
+            this.invoiceDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.invoiceDateDateTimePicker.Location = new System.Drawing.Point(244, 72);
+            this.invoiceDateDateTimePicker.Name = "invoiceDateDateTimePicker";
+            this.invoiceDateDateTimePicker.Size = new System.Drawing.Size(227, 27);
+            this.invoiceDateDateTimePicker.TabIndex = 13;
+            // 
+            // btnDeleteInvoice
+            // 
+            this.btnDeleteInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteInvoice.Location = new System.Drawing.Point(456, 317);
+            this.btnDeleteInvoice.Name = "btnDeleteInvoice";
+            this.btnDeleteInvoice.Size = new System.Drawing.Size(220, 57);
+            this.btnDeleteInvoice.TabIndex = 11;
+            this.btnDeleteInvoice.Text = "Delete Invoice";
+            this.btnDeleteInvoice.UseVisualStyleBackColor = true;
+            this.btnDeleteInvoice.Click += new System.EventHandler(this.btnDeleteInvoice_Click);
+            // 
+            // btnInvoiceEdit
+            // 
+            this.btnInvoiceEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoiceEdit.Location = new System.Drawing.Point(232, 317);
+            this.btnInvoiceEdit.Name = "btnInvoiceEdit";
+            this.btnInvoiceEdit.Size = new System.Drawing.Size(220, 57);
+            this.btnInvoiceEdit.TabIndex = 10;
+            this.btnInvoiceEdit.Text = "Edit Invoice";
+            this.btnInvoiceEdit.UseVisualStyleBackColor = true;
+            this.btnInvoiceEdit.Click += new System.EventHandler(this.btnInvoiceEdit_Click);
+            // 
+            // btnInvoiceAdd
+            // 
+            this.btnInvoiceAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoiceAdd.Location = new System.Drawing.Point(6, 317);
+            this.btnInvoiceAdd.Name = "btnInvoiceAdd";
+            this.btnInvoiceAdd.Size = new System.Drawing.Size(220, 57);
+            this.btnInvoiceAdd.TabIndex = 9;
+            this.btnInvoiceAdd.Text = "Add Invoice";
+            this.btnInvoiceAdd.UseVisualStyleBackColor = true;
+            this.btnInvoiceAdd.Click += new System.EventHandler(this.btnInvoiceAdd_Click);
+            // 
+            // groupBoxInvoiceLineItemBtns
+            // 
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.btnDeleteLineItem);
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.btnEditInvLineItem);
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.btnAddInvLineItem);
+            this.groupBoxInvoiceLineItemBtns.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxInvoiceLineItemBtns.Location = new System.Drawing.Point(12, 486);
+            this.groupBoxInvoiceLineItemBtns.Name = "groupBoxInvoiceLineItemBtns";
+            this.groupBoxInvoiceLineItemBtns.Size = new System.Drawing.Size(682, 393);
+            this.groupBoxInvoiceLineItemBtns.TabIndex = 9;
+            this.groupBoxInvoiceLineItemBtns.TabStop = false;
+            this.groupBoxInvoiceLineItemBtns.Text = "Invoice Line Items";
+            // 
+            // btnDeleteLineItem
+            // 
+            this.btnDeleteLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteLineItem.Location = new System.Drawing.Point(456, 328);
+            this.btnDeleteLineItem.Name = "btnDeleteLineItem";
+            this.btnDeleteLineItem.Size = new System.Drawing.Size(220, 57);
+            this.btnDeleteLineItem.TabIndex = 14;
+            this.btnDeleteLineItem.Text = "Delete Line Item";
+            this.btnDeleteLineItem.UseVisualStyleBackColor = true;
+            // 
+            // btnEditInvLineItem
+            // 
+            this.btnEditInvLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditInvLineItem.Location = new System.Drawing.Point(232, 328);
+            this.btnEditInvLineItem.Name = "btnEditInvLineItem";
+            this.btnEditInvLineItem.Size = new System.Drawing.Size(220, 57);
+            this.btnEditInvLineItem.TabIndex = 13;
+            this.btnEditInvLineItem.Text = "Edit Line Item";
+            this.btnEditInvLineItem.UseVisualStyleBackColor = true;
+            // 
+            // btnAddInvLineItem
+            // 
+            this.btnAddInvLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddInvLineItem.Location = new System.Drawing.Point(6, 328);
+            this.btnAddInvLineItem.Name = "btnAddInvLineItem";
+            this.btnAddInvLineItem.Size = new System.Drawing.Size(220, 57);
+            this.btnAddInvLineItem.TabIndex = 12;
+            this.btnAddInvLineItem.Text = "Add Line Item";
+            this.btnAddInvLineItem.UseVisualStyleBackColor = true;
+            // 
+            // btnInvoicesExit
+            // 
+            this.btnInvoicesExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoicesExit.Location = new System.Drawing.Point(1475, 98);
+            this.btnInvoicesExit.Name = "btnInvoicesExit";
+            this.btnInvoicesExit.Size = new System.Drawing.Size(220, 57);
+            this.btnInvoicesExit.TabIndex = 24;
+            this.btnInvoicesExit.Text = "Exit";
+            this.btnInvoicesExit.UseVisualStyleBackColor = true;
+            this.btnInvoicesExit.Visible = false;
+            this.btnInvoicesExit.Click += new System.EventHandler(this.btnInvoicesExit_Click);
             // 
             // InvoiceListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1844, 891);
+            this.Controls.Add(this.btnInvoicesExit);
+            this.Controls.Add(this.groupBoxInvoiceLineItemBtns);
+            this.Controls.Add(this.groupBoxInvoiceBtns);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.lblInvoiceTitle);
@@ -571,16 +858,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingNavigator)).EndInit();
             this.invoiceBindingNavigator.ResumeLayout(false);
             this.invoiceBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceLineItemDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceLineItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceLineItemBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBoxInvoiceBtns.ResumeLayout(false);
+            this.groupBoxInvoiceBtns.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
+            this.groupBoxInvoiceLineItemBtns.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -604,20 +895,6 @@
         private System.Windows.Forms.DataGridView invoiceDataGridView;
         private System.Windows.Forms.Label LblInvoiceLineItemsTitle;
         private System.Windows.Forms.Label lblInvoiceTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerPhoneNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceTotal;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
@@ -640,5 +917,36 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripButton btnShowAllInvoices;
         private System.Windows.Forms.BindingSource customerBindingSource;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBoxInvoiceBtns;
+        private System.Windows.Forms.GroupBox groupBoxInvoiceLineItemBtns;
+        private System.Windows.Forms.Button btnDeleteInvoice;
+        private System.Windows.Forms.Button btnInvoiceEdit;
+        private System.Windows.Forms.Button btnInvoiceAdd;
+        private System.Windows.Forms.Button btnDeleteLineItem;
+        private System.Windows.Forms.Button btnEditInvLineItem;
+        private System.Windows.Forms.Button btnAddInvLineItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerPhoneNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceTotal;
+        private System.Windows.Forms.ComboBox customerIDComboBox;
+        private System.Windows.Forms.TextBox invoiceIDTextBox;
+        private System.Windows.Forms.DateTimePicker invoiceDateDateTimePicker;
+        private System.Windows.Forms.TextBox customerLNameTextBox1;
+        private System.Windows.Forms.TextBox customerFNameTextBox;
+        private System.Windows.Forms.Button btnSaveInvoice;
+        private System.Windows.Forms.TextBox customerPhoneNumTextBox;
+        private System.Windows.Forms.Button btnInvoicesExit;
     }
 }

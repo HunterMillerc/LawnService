@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             invoicesDb.Invoices.Load();
             invoicesDb.InvoiceLineItems.Load();
             this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
-            
+            this.customerBindingSource.DataSource = invoicesDb.Customers.Local.ToList();
         }
 
         private void InvoiceListForm_Load(object sender, EventArgs e)
@@ -178,7 +179,109 @@ namespace MillersLawnService.Forms.InvoicesForms
         private void btnShowAllInvoices_Click(object sender, EventArgs e)
         {
             this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
+            cboCustNameFilter.SelectedIndex = -1;
             PopulateCustomInvoiceDataGridViewColumns();
         }
+
+        private void btnInvoiceEdit_Click(object sender, EventArgs e)
+        {
+            EnableInvoiceEdit();
+        }
+
+        private void EnableInvoiceEdit()
+        {
+            invoiceDateDateTimePicker.Enabled = !invoiceDateDateTimePicker.Enabled;
+            customerIDComboBox.Enabled = !customerIDComboBox.Enabled;
+            btnInvoiceAdd.Enabled = !btnInvoiceAdd.Enabled;
+            btnDeleteInvoice.Enabled = !btnDeleteInvoice.Enabled;
+            btnSaveInvoice.Visible = !btnSaveInvoice.Visible;
+            btnInvoiceEdit.Enabled = !btnInvoiceEdit.Enabled;
+            btnAddInvLineItem.Enabled = !btnAddInvLineItem.Enabled;
+            btnEditInvLineItem.Enabled = !btnEditInvLineItem.Enabled;
+            btnDeleteLineItem.Enabled = !btnDeleteLineItem.Enabled;
+        }
+
+        private void btnSaveInvoice_Click(object sender, EventArgs e)
+        {
+            if(invoiceIDTextBox.Text == "")
+            {
+                MessageBox.Show("No invoice selected. Please select an invoice to edit.", "Edit Error");
+            }
+            else
+            {
+                int currentInv = Convert.ToInt32(invoiceIDTextBox.Text);
+                var editedInv = (from invoice in invoicesDb.Invoices
+                                 where invoice.InvoiceID == currentInv
+                                 select invoice).Single();
+
+                editedInv.InvoiceDate = invoiceDateDateTimePicker.Value;
+                editedInv.CustomerID = Convert.ToInt32(customerIDComboBox.SelectedValue);
+                invoicesDb.SaveChanges();
+                EnableInvoiceEdit();
+                PopulateCustomInvoiceDataGridViewColumns();
+            }
+        }
+
+        private void btnDeleteInvoice_Click(object sender, EventArgs e)
+        {
+            if(invoiceIDTextBox.Text == "")
+            {
+                MessageBox.Show("No invoice selected. Please select an invoice to delete.", "Delete Error");
+            }
+            else
+            {
+                int currentInv = Convert.ToInt32(invoiceIDTextBox.Text);
+                var editedInv = (from invoice in invoicesDb.Invoices
+                                 where invoice.InvoiceID == currentInv
+                                 select invoice).Single();
+
+                DialogResult result = MessageBox.Show($"Delete Invoice ID: {currentInv.ToString()}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        invoicesDb.Invoices.Remove(editedInv);
+                        invoicesDb.SaveChanges();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        this.Close();
+                        if(invoicesDb.Entry(editedInv).State == EntityState.Detached)
+                        {
+                            MessageBox.Show("Another user has deleted that invoice.", "Concurrency Error");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Another user has updated that invoice.", "Concurrency Error");
+                        }
+                    }
+                    catch (DbUpdateException)
+                    {
+                        this.Close();
+                        MessageBox.Show("Unable to delete invoice. Unknown Error Occurred.", "Invoice Not Deleted");
+                        InvoiceListForm newForm = new InvoiceListForm();
+                        newForm.Show();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    }
+                }
+            }
+        }
+
+        private void btnInvoiceAdd_Click(object sender, EventArgs e)
+        {
+            AddInvoiceForm addInvoiceForm = new AddInvoiceForm();
+            addInvoiceForm.Show();
+            this.Close();
+        }
+
+        private void btnInvoicesExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }
