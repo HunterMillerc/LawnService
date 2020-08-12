@@ -158,13 +158,20 @@ namespace MillersLawnService.Forms.InvoicesForms
             int x = 0;
             foreach(int invId in invIdList)
             {
-                var totalAmtInvSum = (from invLineItem in invoicesDb.InvoiceLineItems
-                                      join service in invoicesDb.Services
-                                      on invLineItem.ServiceID equals service.ServiceID
-                                      where invLineItem.InvoiceID == invId
-                                      select service.ServiceCostPerHour * invLineItem.ServiceNumOfHours).Sum();
-                invoiceDataGridView.Rows[x].Cells[6].Value = totalAmtInvSum;
-                x++;
+                try
+                {
+                    var totalAmtInvSum = (from invLineItem in invoicesDb.InvoiceLineItems
+                                          join service in invoicesDb.Services
+                                          on invLineItem.ServiceID equals service.ServiceID
+                                          where invLineItem.InvoiceID == invId
+                                          select service.ServiceCostPerHour * invLineItem.ServiceNumOfHours).Sum();
+                    invoiceDataGridView.Rows[x].Cells[6].Value = totalAmtInvSum;
+                    x++;
+                }
+                catch
+                {
+                    return;
+                }
                 
             }
         }
