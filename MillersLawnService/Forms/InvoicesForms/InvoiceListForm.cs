@@ -26,20 +26,30 @@ namespace MillersLawnService.Forms.InvoicesForms
             invoicesDb.Invoices.Load();
             invoicesDb.InvoiceLineItems.Load();
             this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
+
+            //Populate cboFilterByName combobox for list of current customer names in database
+            
+            cboCustNameFilter.ComboBox.DataSource = invoicesDb.Customers.Local.ToList();
+            cboCustNameFilter.ComboBox.DisplayMember = "CustomerLName";
+            cboCustNameFilter.ComboBox.ValueMember = "CustomerLName";
+
+            
         }
 
         private void InvoiceListForm_Load(object sender, EventArgs e)
         {
             FilterInvoiceLineItemDataGridView();
             PopulateCustomInvoiceDataGridViewColumns();
+            selectedInvoiceIDTextBox.Text = currentSelectedInvoiceId.ToString();
         }
 
         private void invoiceDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             FilterInvoiceLineItemDataGridView();
+            selectedInvoiceIDTextBox.Text = currentSelectedInvoiceId.ToString();
         }
 
-        //Populate invoice line item datagridview based on selected value of invoice
+        //Populate invoice line item datagridview custom columns based on selected value of invoice
         private void FilterInvoiceLineItemDataGridView()
         {
             //Try catch statement in case user somehow doesn't select a valid invoice containing an ID
@@ -56,6 +66,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             var invoiceIdFilter = invoicesDb.InvoiceLineItems.Local.ToBindingList().Where(x => x.InvoiceID == currentSelectedInvoiceId);
             this.invoiceLineItemBindingSource.DataSource = invoiceIdFilter.Count() > 0 ? invoiceIdFilter : invoiceIdFilter.ToArray();
 
+            /*----------------------------------------------Employee Info---------------------------------*/
             //Generate employee information
             List<int> employeeIdList = new List<int>();
 
@@ -79,6 +90,23 @@ namespace MillersLawnService.Forms.InvoicesForms
                                    select employee.EmployeeLName).Single();
                 invoiceLineItemDataGridView.Rows[i].Cells[4].Value = lastNameEmp;
                 i++;
+            }
+
+            /*----------------------------------------------Invoice Line Item Cost Info------------------------------*/
+            //Populate invoice line item cost for each row in invoice line item datagridview
+            int y = 0;
+            foreach (DataGridViewRow row in invoiceLineItemDataGridView.Rows)
+            {
+                int serviceId = Convert.ToInt32(row.Cells[1].Value.ToString());
+
+                var lineItemCostQuery = (from invLineItem in invoicesDb.InvoiceLineItems
+                                         join service in invoicesDb.Services
+                                         on invLineItem.ServiceID equals service.ServiceID
+                                         where invLineItem.ServiceID == serviceId
+                                         select service.ServiceCostPerHour * invLineItem.ServiceNumOfHours).Single();
+
+                invoiceLineItemDataGridView.Rows[y].Cells[6].Value = lineItemCostQuery;
+                y++;
             }
             
         }
@@ -121,22 +149,30 @@ namespace MillersLawnService.Forms.InvoicesForms
             //Create list containing invoice IDs of current view invoice datagridview
             List<int> invIdList = new List<int>();
 
-            //Loop through all rows and add invoice ids to the list
+            //Loop through all rows in datagridview of Invoices and add invoice ids to the list
             foreach(DataGridViewRow row in invoiceDataGridView.Rows)
             {
                 invIdList.Add(Convert.ToInt32(row.Cells[0].Value.ToString()));
             }
 
-            //Loop through each row and obtain invoice total information (good luck?)
+            //Loop through each row and obtain invoice total information. Value of invoice total will be displayed in last column then
             int x = 0;
             foreach(int invId in invIdList)
             {
-                foreach(DataGridViewRow row in invoiceLineItemDataGridView.Rows)
-                {
-                    //TODO: Get correct query to select price of service and display total for each invoice
-                }
+                var totalAmtInvSum = (from invLineItem in invoicesDb.InvoiceLineItems
+                                      join service in invoicesDb.Services
+                                      on invLineItem.ServiceID equals service.ServiceID
+                                      where invLineItem.InvoiceID == invId
+                                      select service.ServiceCostPerHour * invLineItem.ServiceNumOfHours).Sum();
+                invoiceDataGridView.Rows[x].Cells[6].Value = totalAmtInvSum;
+                x++;
                 
             }
+        }
+
+        private void btnFilterByCustName_Click(object sender, EventArgs e)
+        {
+            var filteredData = invoicesDb.Invoices.Local.ToBindingList().Where(x => x)
         }
     }
 }
