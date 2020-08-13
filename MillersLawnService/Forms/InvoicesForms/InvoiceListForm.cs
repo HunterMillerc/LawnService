@@ -26,8 +26,11 @@ namespace MillersLawnService.Forms.InvoicesForms
             invoicesDb.Employees.Load();
             invoicesDb.Invoices.Load();
             invoicesDb.InvoiceLineItems.Load();
+            invoicesDb.Services.Load();
             this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
             this.customerBindingSource.DataSource = invoicesDb.Customers.Local.ToList();
+            this.employeeBindingSource.DataSource = invoicesDb.Employees.Local.ToList();
+            this.serviceBindingSource.DataSource = invoicesDb.Services.Local.ToList();
         }
 
         private void InvoiceListForm_Load(object sender, EventArgs e)
@@ -40,12 +43,29 @@ namespace MillersLawnService.Forms.InvoicesForms
             var lastNames = (from customer in invoicesDb.Customers
                              select customer.CustomerLName).Distinct();
             cboCustNameFilter.Items.AddRange(lastNames.ToArray());
+            EnableEditDeleteBtnsInvLineItems();
         }
 
         private void invoiceDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             FilterInvoiceLineItemDataGridView();
             selectedInvoiceIDTextBox.Text = currentSelectedInvoiceId.ToString();
+            EnableEditDeleteBtnsInvLineItems();
+        }
+
+        //Disable edit invoicelineitem and delete invoicelineitem buttons if there are no invoice line items on the selected invoice
+        private void EnableEditDeleteBtnsInvLineItems()
+        {
+            if(invoiceIDTextBox1.Text == "")
+            {
+                btnEditInvLineItem.Enabled = false;
+                btnDeleteInvLineItem.Enabled = false;
+            }
+            else
+            {
+                btnEditInvLineItem.Enabled = true;
+                btnDeleteInvLineItem.Enabled = true;
+            }
         }
 
         //Populate invoice line item datagridview custom columns based on selected value of invoice
@@ -205,7 +225,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             btnInvoiceEdit.Enabled = !btnInvoiceEdit.Enabled;
             btnAddInvLineItem.Enabled = !btnAddInvLineItem.Enabled;
             btnEditInvLineItem.Enabled = !btnEditInvLineItem.Enabled;
-            btnDeleteLineItem.Enabled = !btnDeleteLineItem.Enabled;
+            btnDeleteInvLineItem.Enabled = !btnDeleteInvLineItem.Enabled;
         }
 
         private void btnSaveInvoice_Click(object sender, EventArgs e)

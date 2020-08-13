@@ -123,7 +123,7 @@
             // btnMainMnuPurchaseOrders
             // 
             this.btnMainMnuPurchaseOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMnuPurchaseOrders.Location = new System.Drawing.Point(102, 469);
+            this.btnMainMnuPurchaseOrders.Location = new System.Drawing.Point(66, 551);
             this.btnMainMnuPurchaseOrders.Name = "btnMainMnuPurchaseOrders";
             this.btnMainMnuPurchaseOrders.Size = new System.Drawing.Size(220, 57);
             this.btnMainMnuPurchaseOrders.TabIndex = 4;

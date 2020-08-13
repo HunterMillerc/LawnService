@@ -31,9 +31,10 @@ namespace MillersLawnService.Forms.InvoicesForms
             invoice.CustomerID = Convert.ToInt32(customerIDComboBox.SelectedValue);
             addInvDb.Invoices.Add(invoice);
             addInvDb.SaveChanges();
+            this.Close();
+            MessageBox.Show("Invoice added successfully.", "Invoice Added");
             InvoiceListForm invoiceListForm = new InvoiceListForm();
             invoiceListForm.Show();
-            this.Close();
         }
     }
 }
