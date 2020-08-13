@@ -94,7 +94,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             try
             {
                 //Get int of current selected invoice id
-                currentSelectedInvoiceId = Convert.ToInt32(invoiceDataGridView.CurrentRow.Cells[0].Value);
+                currentSelectedInvoiceId = Convert.ToInt32(invoiceIDTextBox.Text);
             }
             catch
             {
@@ -199,8 +199,6 @@ namespace MillersLawnService.Forms.InvoicesForms
                 int x = 0;
                 foreach (int invId in invList)
                 {
-                    // try
-                    //{
                     var totalAmtInInvoice = (from invLineItem in invoicesDb.InvoiceLineItems
                                              join service in invoicesDb.Services
                                              on invLineItem.ServiceID equals service.ServiceID
@@ -209,11 +207,6 @@ namespace MillersLawnService.Forms.InvoicesForms
 
                     invoiceDataGridView.Rows[x].Cells[6].Value = Convert.ToDecimal(totalAmtInInvoice);
                     x++;
-                    //}
-                    //catch
-                    //{
-                    //     return;
-                    //}
 
                 }
             }
@@ -224,6 +217,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             var filteredData = invoicesDb.Invoices.Local.ToBindingList().Where(x => x.tblCustomer.CustomerLName == cboCustNameFilter.Text);
             this.invoiceBindingSource.DataSource = filteredData.Count() > 0 ? filteredData : filteredData.ToArray();
             PopulateCustomInvoiceDataGridViewColumns();
+            FilterInvoiceLineItemDataGridView();
         }
 
         private void btnShowAllInvoices_Click(object sender, EventArgs e)
@@ -231,6 +225,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
             cboCustNameFilter.SelectedIndex = -1;
             PopulateCustomInvoiceDataGridViewColumns();
+            FilterInvoiceLineItemDataGridView();
         }
 
         private void btnInvoiceEdit_Click(object sender, EventArgs e)
