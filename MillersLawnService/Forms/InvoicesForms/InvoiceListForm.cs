@@ -18,6 +18,8 @@ namespace MillersLawnService.Forms.InvoicesForms
 
         int currentSelectedInvoiceId;
 
+        Object originalServiceIdCboData;
+
         public InvoiceListForm()
         {
             InitializeComponent();
@@ -31,6 +33,9 @@ namespace MillersLawnService.Forms.InvoicesForms
             this.customerBindingSource.DataSource = invoicesDb.Customers.Local.ToList();
             this.employeeBindingSource.DataSource = invoicesDb.Employees.Local.ToList();
             this.serviceBindingSource.DataSource = invoicesDb.Services.Local.ToList();
+
+            //get original data source for service IDs combobox. Must use this when saving invoice edits so that combobox displays correct service id when selecting new invoice line items
+            originalServiceIdCboData = serviceIDComboBox.DataSource;
         }
 
         private void InvoiceListForm_Load(object sender, EventArgs e)
@@ -44,6 +49,7 @@ namespace MillersLawnService.Forms.InvoicesForms
                              select customer.CustomerLName).Distinct();
             cboCustNameFilter.Items.AddRange(lastNames.ToArray());
             EnableEditDeleteBtnsInvLineItems();
+            serviceIDTextBoxHidden.Visible = false;
         }
 
         private void invoiceDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -309,6 +315,152 @@ namespace MillersLawnService.Forms.InvoicesForms
             this.Close();
         }
 
+        private void btnDeleteInvLineItem_Click(object sender, EventArgs e)
+        {
+            int invLineItemInvNum = Convert.ToInt32(invoiceIDTextBox1.Text);
+            int invLineItemServiceNum = Convert.ToInt32(serviceIDComboBox.Text);
 
+            var deleteInvLineItem = (from invLineItem in invoicesDb.InvoiceLineItems
+                                          where invLineItem.InvoiceID == invLineItemInvNum && invLineItem.ServiceID == invLineItemServiceNum
+                                          select invLineItem).Single();
+
+            var deleteInvLineItemServiceName = (from invLineItem in invoicesDb.InvoiceLineItems
+                                                where invLineItem.InvoiceID == invLineItemInvNum && invLineItem.ServiceID == invLineItemServiceNum
+                                                select invLineItem.tblService.ServiceName).Single().ToString();
+
+            var deleteInvLineItemEmpName = (from invLineItem in invoicesDb.InvoiceLineItems
+                                            where invLineItem.InvoiceID == invLineItemInvNum && invLineItem.ServiceID == invLineItemServiceNum
+                                            select invLineItem.tblEmployee.EmployeeFName + " " + invLineItem.tblEmployee.EmployeeLName).Single().ToString();
+
+            DialogResult result = MessageBox.Show($"Delete Line Item where Invoice ID = {invLineItemInvNum} and Service ID = {invLineItemServiceNum} (Service Name: {deleteInvLineItemServiceName} | Service performed by: {deleteInvLineItemEmpName})?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                try
+                {
+                    invoicesDb.InvoiceLineItems.Remove(deleteInvLineItem);
+                    invoicesDb.SaveChanges();
+                    FilterInvoiceLineItemDataGridView();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    this.Close();
+                    if (invoicesDb.Entry(deleteInvLineItem).State == EntityState.Detached)
+                    {
+                        MessageBox.Show("Another user has deleted that invoice line item.", "Concurrency Error");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Another user has updated that invoice line item.", "Concurrency Error");
+                    }
+                }
+                catch (DbUpdateException)
+                {
+                    this.Close();
+                    MessageBox.Show("Unable to delete invoice line item. Unknown Error Occurred.", "Invoice Line Item Not Deleted");
+                    InvoiceListForm newForm = new InvoiceListForm();
+                    newForm.Show();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+            }
+        }
+
+        private void btnEditInvLineItem_Click(object sender, EventArgs e)
+        {
+            EnableEditInvLineItems();
+        }
+
+        private void EnableEditInvLineItems()
+        {
+            //Data source for services combobox (must not duplicate services within each invoice)
+            var servicesUsedInInvoice = (from invLineItem in invoicesDb.InvoiceLineItems
+                                         where invLineItem.InvoiceID == currentSelectedInvoiceId
+                                         select invLineItem.ServiceID).ToList();
+            var servicesNotUsedInInvoice = invoicesDb.Services.Where(s => !servicesUsedInInvoice.Contains(s.ServiceID)).ToList();
+
+            btnAddInvLineItem.Enabled = !btnAddInvLineItem.Enabled;
+            btnEditInvLineItem.Enabled = !btnEditInvLineItem.Enabled;
+            btnDeleteInvLineItem.Enabled = !btnDeleteInvLineItem.Enabled;
+            btnInvLineItemSave.Visible = !btnInvLineItemSave.Visible;
+            serviceIDComboBox.Enabled = !serviceIDComboBox.Enabled;
+            serviceIDComboBox.DataSource = servicesNotUsedInInvoice;
+            employeeIDComboBox.Enabled = !employeeIDComboBox.Enabled;
+            serviceNumOfHoursNumericUpDown.Enabled = !serviceNumOfHoursNumericUpDown.Enabled;
+            btnInvLineItemCancel.Visible = !btnInvLineItemCancel.Visible;
+        }
+
+        private void DisableEditInvLineItems()
+        {
+            btnAddInvLineItem.Enabled = !btnAddInvLineItem.Enabled;
+            btnEditInvLineItem.Enabled = !btnEditInvLineItem.Enabled;
+            btnDeleteInvLineItem.Enabled = !btnDeleteInvLineItem.Enabled;
+            btnInvLineItemSave.Visible = !btnInvLineItemSave.Visible;
+            serviceIDComboBox.Enabled = !serviceIDComboBox.Enabled;
+            serviceIDComboBox.DataSource = originalServiceIdCboData;
+            employeeIDComboBox.Enabled = !employeeIDComboBox.Enabled;
+            serviceNumOfHoursNumericUpDown.Enabled = !serviceNumOfHoursNumericUpDown.Enabled;
+            btnInvLineItemCancel.Visible = !btnInvLineItemCancel.Visible;
+        }
+
+        private void serviceIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowCorrectServiceInfo();
+        }
+
+        private void btnInvLineItemSave_Click(object sender, EventArgs e)
+        {
+            int invLineItemInvNum = Convert.ToInt32(invoiceIDTextBox1.Text);
+            int invLineItemServiceNum = Convert.ToInt32(serviceIDTextBoxHidden.Text);
+
+            var editedInvLineItem = (from invLineItem in invoicesDb.InvoiceLineItems
+                                     where invLineItem.InvoiceID == invLineItemInvNum && invLineItem.ServiceID == invLineItemServiceNum
+                                     select invLineItem).Single();
+
+            try
+            {
+                invoicesDb.InvoiceLineItems.Remove(editedInvLineItem);
+                invoicesDb.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+
+            InvoiceLineItem newInvLine = new InvoiceLineItem();
+            newInvLine.InvoiceID = invLineItemInvNum;
+            newInvLine.ServiceID = Convert.ToInt32(serviceIDComboBox.Text);
+            newInvLine.EmployeeID = Convert.ToInt32(employeeIDComboBox.Text);
+            newInvLine.ServiceNumOfHours = Convert.ToInt32(serviceNumOfHoursNumericUpDown.Value);
+            invoicesDb.InvoiceLineItems.Add(newInvLine);
+            invoicesDb.SaveChanges();
+            DisableEditInvLineItems();
+            FilterInvoiceLineItemDataGridView();
+        }
+
+        private void btnInvLineItemCancel_Click(object sender, EventArgs e)
+        {
+            DisableEditInvLineItems();
+            ShowCorrectServiceInfo();
+        }
+
+        private void ShowCorrectServiceInfo()
+        {
+            //Show correct information if selected service changed
+            int serviceId = Convert.ToInt32(serviceIDComboBox.Text);
+
+
+            var serviceName = (from service in invoicesDb.Services
+                               where service.ServiceID == serviceId
+                               select service.ServiceName).Single().ToString();
+
+            var serviceCostPerHour = (from service in invoicesDb.Services
+                                      where service.ServiceID == serviceId
+                                      select service.ServiceCostPerHour).Single().ToString();
+
+            serviceNameTextBox.Text = serviceName;
+            serviceCostPerHourTextBox.Text = serviceCostPerHour;
+        }
     }
 }

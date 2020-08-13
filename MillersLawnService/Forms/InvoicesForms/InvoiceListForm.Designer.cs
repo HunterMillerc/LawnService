@@ -44,9 +44,9 @@
             System.Windows.Forms.Label serviceNameLabel;
             System.Windows.Forms.Label serviceCostPerHourLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceListForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.invoiceBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -112,6 +112,9 @@
             this.btnInvoiceEdit = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
             this.groupBoxInvoiceLineItemBtns = new System.Windows.Forms.GroupBox();
+            this.serviceIDTextBoxHidden = new System.Windows.Forms.TextBox();
+            this.btnInvLineItemCancel = new System.Windows.Forms.Button();
+            this.btnInvLineItemSave = new System.Windows.Forms.Button();
             this.serviceCostPerHourTextBox = new System.Windows.Forms.TextBox();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.serviceNameTextBox = new System.Windows.Forms.TextBox();
@@ -469,9 +472,9 @@
             // 
             // Cost
             // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = "$0.00";
-            this.Cost.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = "$0.00";
+            this.Cost.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cost.HeaderText = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.ReadOnly = true;
@@ -514,9 +517,9 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn2.HeaderText = "Invoice Date";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -548,9 +551,9 @@
             // 
             // InvoiceTotal
             // 
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = "$0.00";
-            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "$0.00";
+            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.InvoiceTotal.HeaderText = "Invoice Total";
             this.InvoiceTotal.Name = "InvoiceTotal";
             this.InvoiceTotal.ReadOnly = true;
@@ -884,6 +887,9 @@
             // 
             // groupBoxInvoiceLineItemBtns
             // 
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.serviceIDTextBoxHidden);
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.btnInvLineItemCancel);
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.btnInvLineItemSave);
             this.groupBoxInvoiceLineItemBtns.Controls.Add(serviceCostPerHourLabel);
             this.groupBoxInvoiceLineItemBtns.Controls.Add(this.serviceCostPerHourTextBox);
             this.groupBoxInvoiceLineItemBtns.Controls.Add(serviceNameLabel);
@@ -912,6 +918,39 @@
             this.groupBoxInvoiceLineItemBtns.TabStop = false;
             this.groupBoxInvoiceLineItemBtns.Text = "Invoice Line Items";
             // 
+            // serviceIDTextBoxHidden
+            // 
+            this.serviceIDTextBoxHidden.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceLineItemBindingSource, "ServiceID", true));
+            this.serviceIDTextBoxHidden.Location = new System.Drawing.Point(446, 157);
+            this.serviceIDTextBoxHidden.Name = "serviceIDTextBoxHidden";
+            this.serviceIDTextBoxHidden.ReadOnly = true;
+            this.serviceIDTextBoxHidden.Size = new System.Drawing.Size(100, 27);
+            this.serviceIDTextBoxHidden.TabIndex = 32;
+            // 
+            // btnInvLineItemCancel
+            // 
+            this.btnInvLineItemCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvLineItemCancel.Location = new System.Drawing.Point(230, 265);
+            this.btnInvLineItemCancel.Name = "btnInvLineItemCancel";
+            this.btnInvLineItemCancel.Size = new System.Drawing.Size(220, 57);
+            this.btnInvLineItemCancel.TabIndex = 31;
+            this.btnInvLineItemCancel.Text = "Cancel";
+            this.btnInvLineItemCancel.UseVisualStyleBackColor = true;
+            this.btnInvLineItemCancel.Visible = false;
+            this.btnInvLineItemCancel.Click += new System.EventHandler(this.btnInvLineItemCancel_Click);
+            // 
+            // btnInvLineItemSave
+            // 
+            this.btnInvLineItemSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvLineItemSave.Location = new System.Drawing.Point(456, 265);
+            this.btnInvLineItemSave.Name = "btnInvLineItemSave";
+            this.btnInvLineItemSave.Size = new System.Drawing.Size(220, 57);
+            this.btnInvLineItemSave.TabIndex = 30;
+            this.btnInvLineItemSave.Text = "Save";
+            this.btnInvLineItemSave.UseVisualStyleBackColor = true;
+            this.btnInvLineItemSave.Visible = false;
+            this.btnInvLineItemSave.Click += new System.EventHandler(this.btnInvLineItemSave_Click);
+            // 
             // serviceCostPerHourTextBox
             // 
             this.serviceCostPerHourTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serviceBindingSource, "ServiceCostPerHour", true));
@@ -939,6 +978,7 @@
             this.serviceIDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceLineItemBindingSource, "tblService.ServiceID", true));
             this.serviceIDComboBox.DataSource = this.serviceBindingSource;
             this.serviceIDComboBox.DisplayMember = "ServiceID";
+            this.serviceIDComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.serviceIDComboBox.Enabled = false;
             this.serviceIDComboBox.FormattingEnabled = true;
             this.serviceIDComboBox.Location = new System.Drawing.Point(319, 37);
@@ -946,6 +986,7 @@
             this.serviceIDComboBox.Size = new System.Drawing.Size(112, 28);
             this.serviceIDComboBox.TabIndex = 27;
             this.serviceIDComboBox.ValueMember = "ServiceID";
+            this.serviceIDComboBox.SelectedIndexChanged += new System.EventHandler(this.serviceIDComboBox_SelectedIndexChanged);
             // 
             // employeeLNameTextBox
             // 
@@ -1011,6 +1052,7 @@
             this.employeeIDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceLineItemBindingSource, "EmployeeID", true));
             this.employeeIDComboBox.DataSource = this.employeeBindingSource;
             this.employeeIDComboBox.DisplayMember = "EmployeeID";
+            this.employeeIDComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.employeeIDComboBox.Enabled = false;
             this.employeeIDComboBox.FormattingEnabled = true;
             this.employeeIDComboBox.Location = new System.Drawing.Point(562, 37);
@@ -1028,6 +1070,7 @@
             this.btnDeleteInvLineItem.TabIndex = 14;
             this.btnDeleteInvLineItem.Text = "Delete Line Item";
             this.btnDeleteInvLineItem.UseVisualStyleBackColor = true;
+            this.btnDeleteInvLineItem.Click += new System.EventHandler(this.btnDeleteInvLineItem_Click);
             // 
             // btnEditInvLineItem
             // 
@@ -1038,6 +1081,7 @@
             this.btnEditInvLineItem.TabIndex = 13;
             this.btnEditInvLineItem.Text = "Edit Line Item";
             this.btnEditInvLineItem.UseVisualStyleBackColor = true;
+            this.btnEditInvLineItem.Click += new System.EventHandler(this.btnEditInvLineItem_Click);
             // 
             // btnAddInvLineItem
             // 
@@ -1189,5 +1233,8 @@
         private System.Windows.Forms.ComboBox serviceIDComboBox;
         private System.Windows.Forms.TextBox serviceNameTextBox;
         private System.Windows.Forms.TextBox serviceCostPerHourTextBox;
+        private System.Windows.Forms.Button btnInvLineItemSave;
+        private System.Windows.Forms.Button btnInvLineItemCancel;
+        private System.Windows.Forms.TextBox serviceIDTextBoxHidden;
     }
 }
