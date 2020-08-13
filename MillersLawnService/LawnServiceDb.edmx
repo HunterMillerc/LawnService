@@ -52,9 +52,9 @@
         </EntityType>
         <EntityType Name="tblInvoicesLineItems">
           <Key>
-            <PropertyRef Name="InvoiceID" />
-            <PropertyRef Name="ServiceID" />
+            <PropertyRef Name="InvLineItemDetailID" />
           </Key>
+          <Property Name="InvLineItemDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InvoiceID" Type="int" Nullable="false" />
           <Property Name="ServiceID" Type="int" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
@@ -70,9 +70,9 @@
         </EntityType>
         <EntityType Name="tblPurchaseOrdersLineItems">
           <Key>
-            <PropertyRef Name="POID" />
-            <PropertyRef Name="EquipmentID" />
+            <PropertyRef Name="POLineItemID" />
           </Key>
+          <Property Name="POLineItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="POID" Type="int" Nullable="false" />
           <Property Name="EquipmentID" Type="int" Nullable="false" />
           <Property Name="EquipmentQty" Type="int" Nullable="false" />
@@ -313,7 +313,7 @@
           <Property Name="EmployeeZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmployeeCurrentPay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="tblState" Relationship="Self.FK_tblEmployees_tblStates" FromRole="tblEmployees" ToRole="tblStates" />
-          <NavigationProperty Name="tblInvoicesLineItems" Relationship="Self.FK_tblInvoicesLineItems_tblEmployees1" FromRole="tblEmployees" ToRole="tblInvoicesLineItems" />
+          <NavigationProperty Name="tblInvoicesLineItems" Relationship="LawnServiceModel.FK_tblInvoicesLineItems_tblEmployees1" FromRole="Employee" ToRole="tblInvoicesLineItem" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -325,7 +325,7 @@
           <Property Name="VendorID" Type="Int32" Nullable="false" />
           <Property Name="EquipmentAmtOnHand" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblVendor" Relationship="Self.FK_tblEquipment_tblVendors" FromRole="tblEquipment" ToRole="tblVendors" />
-          <NavigationProperty Name="tblPurchaseOrdersLineItems" Relationship="Self.FK_tblPurchaseOrdersLineItems_tblEquipment" FromRole="tblEquipment" ToRole="tblPurchaseOrdersLineItems" />
+          <NavigationProperty Name="tblPurchaseOrdersLineItems" Relationship="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblEquipment" FromRole="Equipment" ToRole="tblPurchaseOrdersLineItem" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -335,20 +335,7 @@
           <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblInvoices_tblCustomers" FromRole="tblInvoices" ToRole="tblCustomers" />
-          <NavigationProperty Name="tblInvoicesLineItems" Relationship="Self.FK_tblInvoicesLineItems_tblInvoices" FromRole="tblInvoices" ToRole="tblInvoicesLineItems" />
-        </EntityType>
-        <EntityType Name="InvoiceLineItem">
-          <Key>
-            <PropertyRef Name="InvoiceID" />
-            <PropertyRef Name="ServiceID" />
-          </Key>
-          <Property Name="InvoiceID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceNumOfHours" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblEmployee" Relationship="Self.FK_tblInvoicesLineItems_tblEmployees1" FromRole="tblInvoicesLineItems" ToRole="tblEmployees" />
-          <NavigationProperty Name="tblInvoice" Relationship="Self.FK_tblInvoicesLineItems_tblInvoices" FromRole="tblInvoicesLineItems" ToRole="tblInvoices" />
-          <NavigationProperty Name="tblService" Relationship="Self.FK_tblInvoicesLineItems_tblServices" FromRole="tblInvoicesLineItems" ToRole="tblServices" />
+          <NavigationProperty Name="tblInvoicesLineItems" Relationship="LawnServiceModel.FK_tblInvoicesLineItems_tblInvoices" FromRole="Invoice" ToRole="tblInvoicesLineItem" />
         </EntityType>
         <EntityType Name="PurchaseOrder">
           <Key>
@@ -358,19 +345,7 @@
           <Property Name="PODate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="VendorID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblVendor" Relationship="Self.FK_tblPurchaseOrders_tblVendors" FromRole="tblPurchaseOrders" ToRole="tblVendors" />
-          <NavigationProperty Name="tblPurchaseOrdersLineItems" Relationship="Self.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" FromRole="tblPurchaseOrders" ToRole="tblPurchaseOrdersLineItems" />
-        </EntityType>
-        <EntityType Name="POLineItem">
-          <Key>
-            <PropertyRef Name="POID" />
-            <PropertyRef Name="EquipmentID" />
-          </Key>
-          <Property Name="POID" Type="Int32" Nullable="false" />
-          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
-          <Property Name="EquipmentQty" Type="Int32" Nullable="false" />
-          <Property Name="LineItemCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="tblEquipment" Relationship="Self.FK_tblPurchaseOrdersLineItems_tblEquipment" FromRole="tblPurchaseOrdersLineItems" ToRole="tblEquipment" />
-          <NavigationProperty Name="tblPurchaseOrder" Relationship="Self.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" FromRole="tblPurchaseOrdersLineItems" ToRole="tblPurchaseOrders" />
+          <NavigationProperty Name="tblPurchaseOrdersLineItems" Relationship="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" FromRole="PurchaseOrder" ToRole="tblPurchaseOrdersLineItem" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -380,7 +355,7 @@
           <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ServiceDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="ServiceCostPerHour" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="tblInvoicesLineItems" Relationship="Self.FK_tblInvoicesLineItems_tblServices" FromRole="tblServices" ToRole="tblInvoicesLineItems" />
+          <NavigationProperty Name="tblInvoicesLineItems" Relationship="LawnServiceModel.FK_tblInvoicesLineItems_tblServices" FromRole="Service" ToRole="tblInvoicesLineItem" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -441,18 +416,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblInvoicesLineItems_tblEmployees1">
-          <End Role="tblEmployees" Type="LawnServiceModel.Employee" Multiplicity="1" />
-          <End Role="tblInvoicesLineItems" Type="LawnServiceModel.InvoiceLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmployees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="tblInvoicesLineItems">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblEquipment_tblVendors">
           <End Role="tblVendors" Type="LawnServiceModel.Vendor" Multiplicity="1" />
           <End Role="tblEquipment" Type="LawnServiceModel.Equipment" Multiplicity="*" />
@@ -462,42 +425,6 @@
             </Principal>
             <Dependent Role="tblEquipment">
               <PropertyRef Name="VendorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblPurchaseOrdersLineItems_tblEquipment">
-          <End Role="tblEquipment" Type="LawnServiceModel.Equipment" Multiplicity="1" />
-          <End Role="tblPurchaseOrdersLineItems" Type="LawnServiceModel.POLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEquipment">
-              <PropertyRef Name="EquipmentID" />
-            </Principal>
-            <Dependent Role="tblPurchaseOrdersLineItems">
-              <PropertyRef Name="EquipmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblInvoicesLineItems_tblInvoices">
-          <End Role="tblInvoices" Type="LawnServiceModel.Invoice" Multiplicity="1" />
-          <End Role="tblInvoicesLineItems" Type="LawnServiceModel.InvoiceLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblInvoices">
-              <PropertyRef Name="InvoiceID" />
-            </Principal>
-            <Dependent Role="tblInvoicesLineItems">
-              <PropertyRef Name="InvoiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblInvoicesLineItems_tblServices">
-          <End Role="tblServices" Type="LawnServiceModel.Service" Multiplicity="1" />
-          <End Role="tblInvoicesLineItems" Type="LawnServiceModel.InvoiceLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblServices">
-              <PropertyRef Name="ServiceID" />
-            </Principal>
-            <Dependent Role="tblInvoicesLineItems">
-              <PropertyRef Name="ServiceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -513,26 +440,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblPurchaseOrdersLineItems_tblPurchaseOrders">
-          <End Role="tblPurchaseOrders" Type="LawnServiceModel.PurchaseOrder" Multiplicity="1" />
-          <End Role="tblPurchaseOrdersLineItems" Type="LawnServiceModel.POLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPurchaseOrders">
-              <PropertyRef Name="POID" />
-            </Principal>
-            <Dependent Role="tblPurchaseOrdersLineItems">
-              <PropertyRef Name="POID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="LawnServiceEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="LawnServiceModel.Customer" />
           <EntitySet Name="Employees" EntityType="LawnServiceModel.Employee" />
           <EntitySet Name="Equipments" EntityType="LawnServiceModel.Equipment" />
           <EntitySet Name="Invoices" EntityType="LawnServiceModel.Invoice" />
-          <EntitySet Name="InvoiceLineItems" EntityType="LawnServiceModel.InvoiceLineItem" />
           <EntitySet Name="PurchaseOrders" EntityType="LawnServiceModel.PurchaseOrder" />
-          <EntitySet Name="POLineItems" EntityType="LawnServiceModel.POLineItem" />
           <EntitySet Name="Services" EntityType="LawnServiceModel.Service" />
           <EntitySet Name="States" EntityType="LawnServiceModel.State" />
           <EntitySet Name="Vendors" EntityType="LawnServiceModel.Vendor" />
@@ -548,35 +461,124 @@
             <End Role="tblStates" EntitySet="States" />
             <End Role="tblEmployees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblInvoicesLineItems_tblEmployees1" Association="Self.FK_tblInvoicesLineItems_tblEmployees1">
-            <End Role="tblEmployees" EntitySet="Employees" />
-            <End Role="tblInvoicesLineItems" EntitySet="InvoiceLineItems" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblEquipment_tblVendors" Association="Self.FK_tblEquipment_tblVendors">
             <End Role="tblVendors" EntitySet="Vendors" />
             <End Role="tblEquipment" EntitySet="Equipments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblPurchaseOrdersLineItems_tblEquipment" Association="Self.FK_tblPurchaseOrdersLineItems_tblEquipment">
-            <End Role="tblEquipment" EntitySet="Equipments" />
-            <End Role="tblPurchaseOrdersLineItems" EntitySet="POLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblInvoicesLineItems_tblInvoices" Association="Self.FK_tblInvoicesLineItems_tblInvoices">
-            <End Role="tblInvoices" EntitySet="Invoices" />
-            <End Role="tblInvoicesLineItems" EntitySet="InvoiceLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblInvoicesLineItems_tblServices" Association="Self.FK_tblInvoicesLineItems_tblServices">
-            <End Role="tblServices" EntitySet="Services" />
-            <End Role="tblInvoicesLineItems" EntitySet="InvoiceLineItems" />
           </AssociationSet>
           <AssociationSet Name="FK_tblPurchaseOrders_tblVendors" Association="Self.FK_tblPurchaseOrders_tblVendors">
             <End Role="tblVendors" EntitySet="Vendors" />
             <End Role="tblPurchaseOrders" EntitySet="PurchaseOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" Association="Self.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders">
-            <End Role="tblPurchaseOrders" EntitySet="PurchaseOrders" />
-            <End Role="tblPurchaseOrdersLineItems" EntitySet="POLineItems" />
+          <EntitySet Name="InvoiceLineItems" EntityType="LawnServiceModel.InvoiceLineItem" />
+          <AssociationSet Name="FK_tblInvoicesLineItems_tblEmployees1" Association="LawnServiceModel.FK_tblInvoicesLineItems_tblEmployees1">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="tblInvoicesLineItem" EntitySet="InvoiceLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblInvoicesLineItems_tblInvoices" Association="LawnServiceModel.FK_tblInvoicesLineItems_tblInvoices">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="tblInvoicesLineItem" EntitySet="InvoiceLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblInvoicesLineItems_tblServices" Association="LawnServiceModel.FK_tblInvoicesLineItems_tblServices">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="tblInvoicesLineItem" EntitySet="InvoiceLineItems" />
+          </AssociationSet>
+          <EntitySet Name="tblPurchaseOrdersLineItems" EntityType="LawnServiceModel.tblPurchaseOrdersLineItem" />
+          <AssociationSet Name="FK_tblPurchaseOrdersLineItems_tblEquipment" Association="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblEquipment">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="tblPurchaseOrdersLineItem" EntitySet="tblPurchaseOrdersLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" Association="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders">
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+            <End Role="tblPurchaseOrdersLineItem" EntitySet="tblPurchaseOrdersLineItems" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="InvoiceLineItem">
+          <Key>
+            <PropertyRef Name="InvLineItemDetailID" />
+          </Key>
+          <Property Name="InvLineItemDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceNumOfHours" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEmployee" Relationship="LawnServiceModel.FK_tblInvoicesLineItems_tblEmployees1" FromRole="tblInvoicesLineItem" ToRole="Employee" />
+          <NavigationProperty Name="tblInvoice" Relationship="LawnServiceModel.FK_tblInvoicesLineItems_tblInvoices" FromRole="tblInvoicesLineItem" ToRole="Invoice" />
+          <NavigationProperty Name="tblService" Relationship="LawnServiceModel.FK_tblInvoicesLineItems_tblServices" FromRole="tblInvoicesLineItem" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_tblInvoicesLineItems_tblEmployees1">
+          <End Type="LawnServiceModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="LawnServiceModel.InvoiceLineItem" Role="tblInvoicesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="tblInvoicesLineItem">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblInvoicesLineItems_tblInvoices">
+          <End Type="LawnServiceModel.Invoice" Role="Invoice" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LawnServiceModel.InvoiceLineItem" Role="tblInvoicesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="tblInvoicesLineItem">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblInvoicesLineItems_tblServices">
+          <End Type="LawnServiceModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="LawnServiceModel.InvoiceLineItem" Role="tblInvoicesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="tblInvoicesLineItem">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblPurchaseOrdersLineItem">
+          <Key>
+            <PropertyRef Name="POLineItemID" />
+          </Key>
+          <Property Name="POLineItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentQty" Type="Int32" Nullable="false" />
+          <Property Name="LineItemCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="tblEquipment" Relationship="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblEquipment" FromRole="tblPurchaseOrdersLineItem" ToRole="Equipment" />
+          <NavigationProperty Name="tblPurchaseOrder" Relationship="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" FromRole="tblPurchaseOrdersLineItem" ToRole="PurchaseOrder" />
+        </EntityType>
+        <Association Name="FK_tblPurchaseOrdersLineItems_tblEquipment">
+          <End Type="LawnServiceModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="LawnServiceModel.tblPurchaseOrdersLineItem" Role="tblPurchaseOrdersLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="tblPurchaseOrdersLineItem">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPurchaseOrdersLineItems_tblPurchaseOrders">
+          <End Type="LawnServiceModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="1" />
+          <End Type="LawnServiceModel.tblPurchaseOrdersLineItem" Role="tblPurchaseOrdersLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrder">
+              <PropertyRef Name="POID" />
+            </Principal>
+            <Dependent Role="tblPurchaseOrdersLineItem">
+              <PropertyRef Name="POID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -632,32 +634,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InvoiceLineItems">
-            <EntityTypeMapping TypeName="LawnServiceModel.InvoiceLineItem">
-              <MappingFragment StoreEntitySet="tblInvoicesLineItems">
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ServiceNumOfHours" ColumnName="ServiceNumOfHours" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PurchaseOrders">
             <EntityTypeMapping TypeName="LawnServiceModel.PurchaseOrder">
               <MappingFragment StoreEntitySet="tblPurchaseOrders">
                 <ScalarProperty Name="POID" ColumnName="POID" />
                 <ScalarProperty Name="PODate" ColumnName="PODate" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="POLineItems">
-            <EntityTypeMapping TypeName="LawnServiceModel.POLineItem">
-              <MappingFragment StoreEntitySet="tblPurchaseOrdersLineItems">
-                <ScalarProperty Name="POID" ColumnName="POID" />
-                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-                <ScalarProperty Name="EquipmentQty" ColumnName="EquipmentQty" />
-                <ScalarProperty Name="LineItemCost" ColumnName="LineItemCost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -689,6 +671,28 @@
                 <ScalarProperty Name="VendorCity" ColumnName="VendorCity" />
                 <ScalarProperty Name="VendorAddress" ColumnName="VendorAddress" />
                 <ScalarProperty Name="VendorZipCode" ColumnName="VendorZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceLineItems">
+            <EntityTypeMapping TypeName="LawnServiceModel.InvoiceLineItem">
+              <MappingFragment StoreEntitySet="tblInvoicesLineItems">
+                <ScalarProperty Name="ServiceNumOfHours" ColumnName="ServiceNumOfHours" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="InvLineItemDetailID" ColumnName="InvLineItemDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPurchaseOrdersLineItems">
+            <EntityTypeMapping TypeName="LawnServiceModel.tblPurchaseOrdersLineItem">
+              <MappingFragment StoreEntitySet="tblPurchaseOrdersLineItems">
+                <ScalarProperty Name="LineItemCost" ColumnName="LineItemCost" />
+                <ScalarProperty Name="EquipmentQty" ColumnName="EquipmentQty" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="POID" ColumnName="POID" />
+                <ScalarProperty Name="POLineItemID" ColumnName="POLineItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

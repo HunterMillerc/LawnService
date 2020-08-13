@@ -14,6 +14,7 @@ namespace MillersLawnService
     
     public partial class InvoiceLineItem
     {
+        public int InvLineItemDetailID { get; set; }
         public int InvoiceID { get; set; }
         public int ServiceID { get; set; }
         public int EmployeeID { get; set; }

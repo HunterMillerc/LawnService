@@ -9,22 +9,22 @@
         <EntityTypeShape EntityType="LawnServiceModel.Employee" Width="1.5" PointX="6.875" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LawnServiceModel.Equipment" Width="1.5" PointX="11.875" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LawnServiceModel.Invoice" Width="1.5" PointX="9.125" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LawnServiceModel.InvoiceLineItem" Width="1.5" PointX="11.375" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LawnServiceModel.PurchaseOrder" Width="1.5" PointX="11.625" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LawnServiceModel.POLineItem" Width="1.5" PointX="14.125" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LawnServiceModel.Service" Width="1.5" PointX="9.125" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LawnServiceModel.State" Width="1.5" PointX="4.625" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LawnServiceModel.Vendor" Width="1.5" PointX="9.625" PointY="10.875" IsExpanded="true" />
         <AssociationConnector Association="LawnServiceModel.FK_tblCustomers_tblStates" ManuallyRouted="false" />
         <AssociationConnector Association="LawnServiceModel.FK_tblInvoices_tblCustomers" ManuallyRouted="false" />
         <AssociationConnector Association="LawnServiceModel.FK_tblEmployees_tblStates" ManuallyRouted="false" />
-        <AssociationConnector Association="LawnServiceModel.FK_tblInvoicesLineItems_tblEmployees1" ManuallyRouted="false" />
         <AssociationConnector Association="LawnServiceModel.FK_tblEquipment_tblVendors" ManuallyRouted="false" />
-        <AssociationConnector Association="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblEquipment" ManuallyRouted="false" />
-        <AssociationConnector Association="LawnServiceModel.FK_tblInvoicesLineItems_tblInvoices" ManuallyRouted="false" />
-        <AssociationConnector Association="LawnServiceModel.FK_tblInvoicesLineItems_tblServices" ManuallyRouted="false" />
         <AssociationConnector Association="LawnServiceModel.FK_tblPurchaseOrders_tblVendors" ManuallyRouted="false" />
-        <AssociationConnector Association="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LawnServiceModel.InvoiceLineItem" Width="1.5" PointX="11.375" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="LawnServiceModel.FK_tblInvoicesLineItems_tblEmployees1" />
+        <AssociationConnector Association="LawnServiceModel.FK_tblInvoicesLineItems_tblInvoices" />
+        <AssociationConnector Association="LawnServiceModel.FK_tblInvoicesLineItems_tblServices" />
+        <EntityTypeShape EntityType="LawnServiceModel.tblPurchaseOrdersLineItem" Width="1.5" PointX="14.125" PointY="11" />
+        <AssociationConnector Association="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblEquipment" />
+        <AssociationConnector Association="LawnServiceModel.FK_tblPurchaseOrdersLineItems_tblPurchaseOrders" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,7 +17,7 @@ namespace MillersLawnService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PurchaseOrder()
         {
-            this.tblPurchaseOrdersLineItems = new HashSet<POLineItem>();
+            this.tblPurchaseOrdersLineItems = new HashSet<tblPurchaseOrdersLineItem>();
         }
     
         public int POID { get; set; }
@@ -26,6 +26,6 @@ namespace MillersLawnService
     
         public virtual Vendor tblVendor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<POLineItem> tblPurchaseOrdersLineItems { get; set; }
+        public virtual ICollection<tblPurchaseOrdersLineItem> tblPurchaseOrdersLineItems { get; set; }
     }
 }

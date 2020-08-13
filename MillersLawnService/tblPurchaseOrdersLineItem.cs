@@ -12,8 +12,9 @@ namespace MillersLawnService
     using System;
     using System.Collections.Generic;
     
-    public partial class POLineItem
+    public partial class tblPurchaseOrdersLineItem
     {
+        public int POLineItemID { get; set; }
         public int POID { get; set; }
         public int EquipmentID { get; set; }
         public int EquipmentQty { get; set; }

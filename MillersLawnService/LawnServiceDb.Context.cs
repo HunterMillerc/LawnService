@@ -29,11 +29,11 @@ namespace MillersLawnService
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<InvoiceLineItem> InvoiceLineItems { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
-        public virtual DbSet<POLineItem> POLineItems { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<InvoiceLineItem> InvoiceLineItems { get; set; }
+        public virtual DbSet<tblPurchaseOrdersLineItem> tblPurchaseOrdersLineItems { get; set; }
     }
 }
