@@ -44,9 +44,9 @@
             System.Windows.Forms.Label serviceNameLabel;
             System.Windows.Forms.Label serviceCostPerHourLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceListForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.invoiceBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -131,6 +131,7 @@
             this.btnAddInvLineItem = new System.Windows.Forms.Button();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnInvoicesExit = new System.Windows.Forms.Button();
+            this.btnAddInvLineItemSave = new System.Windows.Forms.Button();
             invoiceDateLabel = new System.Windows.Forms.Label();
             invoiceIDLabel1 = new System.Windows.Forms.Label();
             customerIDLabel = new System.Windows.Forms.Label();
@@ -431,6 +432,8 @@
             this.invoiceLineItemDataGridView.RowTemplate.Height = 24;
             this.invoiceLineItemDataGridView.Size = new System.Drawing.Size(1118, 309);
             this.invoiceLineItemDataGridView.TabIndex = 2;
+            this.invoiceLineItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.invoiceLineItemDataGridView_CellContentClick);
+            this.invoiceLineItemDataGridView.SelectionChanged += new System.EventHandler(this.invoiceLineItemDataGridView_SelectionChanged);
             // 
             // InvLineItemDetailID
             // 
@@ -481,9 +484,9 @@
             // 
             // Cost
             // 
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = "$0.00";
-            this.Cost.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = "$0.00";
+            this.Cost.DefaultCellStyle = dataGridViewCellStyle4;
             this.Cost.HeaderText = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.ReadOnly = true;
@@ -526,9 +529,9 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn2.HeaderText = "Invoice Date";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -560,9 +563,9 @@
             // 
             // InvoiceTotal
             // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "$0.00";
-            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = "$0.00";
+            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle6;
             this.InvoiceTotal.HeaderText = "Invoice Total";
             this.InvoiceTotal.Name = "InvoiceTotal";
             this.InvoiceTotal.ReadOnly = true;
@@ -896,6 +899,7 @@
             // 
             // groupBoxInvoiceLineItemBtns
             // 
+            this.groupBoxInvoiceLineItemBtns.Controls.Add(this.btnAddInvLineItemSave);
             this.groupBoxInvoiceLineItemBtns.Controls.Add(this.empLastNameTextBox);
             this.groupBoxInvoiceLineItemBtns.Controls.Add(this.empFirstNameTextBox);
             this.groupBoxInvoiceLineItemBtns.Controls.Add(this.serviceCostTextBox);
@@ -1107,6 +1111,18 @@
             this.btnInvoicesExit.Visible = false;
             this.btnInvoicesExit.Click += new System.EventHandler(this.btnInvoicesExit_Click);
             // 
+            // btnAddInvLineItemSave
+            // 
+            this.btnAddInvLineItemSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddInvLineItemSave.Location = new System.Drawing.Point(6, 265);
+            this.btnAddInvLineItemSave.Name = "btnAddInvLineItemSave";
+            this.btnAddInvLineItemSave.Size = new System.Drawing.Size(220, 57);
+            this.btnAddInvLineItemSave.TabIndex = 37;
+            this.btnAddInvLineItemSave.Text = "Save";
+            this.btnAddInvLineItemSave.UseVisualStyleBackColor = true;
+            this.btnAddInvLineItemSave.Visible = false;
+            this.btnAddInvLineItemSave.Click += new System.EventHandler(this.btnAddInvLineItemSave_Click);
+            // 
             // InvoiceListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1239,5 +1255,6 @@
         private System.Windows.Forms.TextBox empLastNameTextBox;
         private System.Windows.Forms.TextBox empFirstNameTextBox;
         private System.Windows.Forms.TextBox serviceCostTextBox;
+        private System.Windows.Forms.Button btnAddInvLineItemSave;
     }
 }
