@@ -49,7 +49,6 @@ namespace MillersLawnService.Forms.InvoicesForms
                              select customer.CustomerLName).Distinct();
             cboCustNameFilter.Items.AddRange(lastNames.ToArray());
             EnableEditDeleteBtnsInvLineItems();
-            serviceIDTextBoxHidden.Visible = false;
         }
 
         private void invoiceDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -57,6 +56,7 @@ namespace MillersLawnService.Forms.InvoicesForms
             FilterInvoiceLineItemDataGridView();
             selectedInvoiceIDTextBox.Text = currentSelectedInvoiceId.ToString();
             EnableEditDeleteBtnsInvLineItems();
+            ShowCorrectServiceAndEmployeeInfo();
         }
 
         //Disable edit invoicelineitem and delete invoicelineitem buttons if there are no invoice line items on the selected invoice
@@ -377,8 +377,8 @@ namespace MillersLawnService.Forms.InvoicesForms
             //Data source for services combobox (must not duplicate services within each invoice)
             var servicesUsedInInvoice = (from invLineItem in invoicesDb.InvoiceLineItems
                                          where invLineItem.InvoiceID == currentSelectedInvoiceId
-                                         select invLineItem.ServiceID).ToList();
-            var servicesNotUsedInInvoice = invoicesDb.Services.Where(s => !servicesUsedInInvoice.Contains(s.ServiceID)).ToList();
+                                         select invLineItem.ServiceID).ToArray();
+            var servicesNotUsedInInvoice = invoicesDb.Services.Where(s => !servicesUsedInInvoice.Contains(s.ServiceID)).ToArray();
 
             btnAddInvLineItem.Enabled = !btnAddInvLineItem.Enabled;
             btnEditInvLineItem.Enabled = !btnEditInvLineItem.Enabled;
@@ -406,7 +406,7 @@ namespace MillersLawnService.Forms.InvoicesForms
 
         private void serviceIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowCorrectServiceInfo();
+            ShowCorrectServiceAndEmployeeInfo();
         }
 
         private void btnInvLineItemSave_Click(object sender, EventArgs e)
@@ -430,25 +430,54 @@ namespace MillersLawnService.Forms.InvoicesForms
 
             InvoiceLineItem newInvLine = new InvoiceLineItem();
             newInvLine.InvoiceID = invLineItemInvNum;
-            newInvLine.ServiceID = Convert.ToInt32(serviceIDComboBox.Text);
+            newInvLine.ServiceID = Convert.ToInt32(this.serviceIDComboBox.GetItemText(this.serviceIDComboBox.SelectedItem));
+            MessageBox.Show(this.serviceIDComboBox.GetItemText(this.serviceIDComboBox.SelectedItem));
             newInvLine.EmployeeID = Convert.ToInt32(employeeIDComboBox.Text);
             newInvLine.ServiceNumOfHours = Convert.ToInt32(serviceNumOfHoursNumericUpDown.Value);
             invoicesDb.InvoiceLineItems.Add(newInvLine);
             invoicesDb.SaveChanges();
+
             DisableEditInvLineItems();
+
+            //Reload database to show new info
+            invoicesDb = new LawnServiceEntities();
+            invoicesDb.Customers.Load();
+            invoicesDb.Employees.Load();
+            invoicesDb.Invoices.Load();
+            invoicesDb.InvoiceLineItems.Load();
+            invoicesDb.Services.Load();
+            this.invoiceBindingSource.DataSource = invoicesDb.Invoices.Local.ToBindingList();
+            this.customerBindingSource.DataSource = invoicesDb.Customers.Local.ToList();
+            this.employeeBindingSource.DataSource = invoicesDb.Employees.Local.ToList();
+            this.serviceBindingSource.DataSource = invoicesDb.Services.Local.ToList();
+            PopulateCustomInvoiceDataGridViewColumns();
             FilterInvoiceLineItemDataGridView();
         }
 
         private void btnInvLineItemCancel_Click(object sender, EventArgs e)
         {
             DisableEditInvLineItems();
-            ShowCorrectServiceInfo();
+            ShowCorrectServiceAndEmployeeInfo();
         }
 
-        private void ShowCorrectServiceInfo()
+        private void ShowCorrectServiceAndEmployeeInfo()
         {
             //Show correct information if selected service changed
-            int serviceId = Convert.ToInt32(serviceIDComboBox.Text);
+            int serviceId;
+            int empId;
+            try
+            {
+                serviceId = Convert.ToInt32(serviceIDComboBox.Text);
+                empId = Convert.ToInt32(employeeIDComboBox.Text);
+            }
+            catch
+            {
+                serviceNameTextBox.Text = "";
+                serviceCostPerHourTextBox.Text = "";
+                employeeFNameTextBox.Text = "";
+                employeeLNameTextBox.Text = "";
+                return;
+            }
 
 
             var serviceName = (from service in invoicesDb.Services
@@ -459,8 +488,13 @@ namespace MillersLawnService.Forms.InvoicesForms
                                       where service.ServiceID == serviceId
                                       select service.ServiceCostPerHour).Single().ToString();
 
+            var empFirstName = invoicesDb.Employees.Where(x => x.EmployeeID == empId).Select(x => x.EmployeeFName).Single();
+            var empLastName = invoicesDb.Employees.Where(x => x.EmployeeID == empId).Select(x => x.EmployeeLName).Single();
+
             serviceNameTextBox.Text = serviceName;
             serviceCostPerHourTextBox.Text = serviceCostPerHour;
+            employeeFNameTextBox.Text = empFirstName;
+            employeeLNameTextBox.Text = empLastName;
         }
     }
 }
