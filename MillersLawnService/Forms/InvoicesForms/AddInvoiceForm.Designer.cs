@@ -105,9 +105,10 @@
             this.btnAddInvoiceFormCancel.Location = new System.Drawing.Point(245, 506);
             this.btnAddInvoiceFormCancel.Name = "btnAddInvoiceFormCancel";
             this.btnAddInvoiceFormCancel.Size = new System.Drawing.Size(199, 57);
-            this.btnAddInvoiceFormCancel.TabIndex = 89;
+            this.btnAddInvoiceFormCancel.TabIndex = 3;
             this.btnAddInvoiceFormCancel.Text = "Cancel";
             this.btnAddInvoiceFormCancel.UseVisualStyleBackColor = true;
+            this.btnAddInvoiceFormCancel.Click += new System.EventHandler(this.btnAddInvoiceFormCancel_Click);
             // 
             // btnAddInvoiceFormSaveChanges
             // 
@@ -115,7 +116,7 @@
             this.btnAddInvoiceFormSaveChanges.Location = new System.Drawing.Point(11, 506);
             this.btnAddInvoiceFormSaveChanges.Name = "btnAddInvoiceFormSaveChanges";
             this.btnAddInvoiceFormSaveChanges.Size = new System.Drawing.Size(199, 57);
-            this.btnAddInvoiceFormSaveChanges.TabIndex = 88;
+            this.btnAddInvoiceFormSaveChanges.TabIndex = 2;
             this.btnAddInvoiceFormSaveChanges.Text = "Save Changes";
             this.btnAddInvoiceFormSaveChanges.UseVisualStyleBackColor = true;
             this.btnAddInvoiceFormSaveChanges.Click += new System.EventHandler(this.btnAddInvoiceFormSaveChanges_Click);
@@ -154,7 +155,7 @@
             this.customerIDComboBox.Location = new System.Drawing.Point(209, 283);
             this.customerIDComboBox.Name = "customerIDComboBox";
             this.customerIDComboBox.Size = new System.Drawing.Size(227, 28);
-            this.customerIDComboBox.TabIndex = 97;
+            this.customerIDComboBox.TabIndex = 1;
             this.customerIDComboBox.ValueMember = "CustomerID";
             // 
             // customerBindingSource
@@ -168,7 +169,7 @@
             this.invoiceDateDateTimePicker.Location = new System.Drawing.Point(209, 250);
             this.invoiceDateDateTimePicker.Name = "invoiceDateDateTimePicker";
             this.invoiceDateDateTimePicker.Size = new System.Drawing.Size(227, 27);
-            this.invoiceDateDateTimePicker.TabIndex = 94;
+            this.invoiceDateDateTimePicker.TabIndex = 0;
             // 
             // customerFNameTextBox
             // 
@@ -179,6 +180,7 @@
             this.customerFNameTextBox.ReadOnly = true;
             this.customerFNameTextBox.Size = new System.Drawing.Size(227, 27);
             this.customerFNameTextBox.TabIndex = 98;
+            this.customerFNameTextBox.TabStop = false;
             // 
             // customerLNameTextBox
             // 
@@ -189,6 +191,7 @@
             this.customerLNameTextBox.ReadOnly = true;
             this.customerLNameTextBox.Size = new System.Drawing.Size(227, 27);
             this.customerLNameTextBox.TabIndex = 99;
+            this.customerLNameTextBox.TabStop = false;
             // 
             // customerPhoneNumTextBox
             // 
@@ -199,6 +202,7 @@
             this.customerPhoneNumTextBox.ReadOnly = true;
             this.customerPhoneNumTextBox.Size = new System.Drawing.Size(227, 27);
             this.customerPhoneNumTextBox.TabIndex = 100;
+            this.customerPhoneNumTextBox.TabStop = false;
             // 
             // AddInvoiceForm
             // 

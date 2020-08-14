@@ -36,5 +36,12 @@ namespace MillersLawnService.Forms.InvoicesForms
             InvoiceListForm invoiceListForm = new InvoiceListForm();
             invoiceListForm.Show();
         }
+
+        private void btnAddInvoiceFormCancel_Click(object sender, EventArgs e)
+        {
+            InvoiceListForm newForm = new InvoiceListForm();
+            newForm.Show();
+            this.Close();
+        }
     }
 }

@@ -44,9 +44,9 @@
             System.Windows.Forms.Label serviceNameLabel;
             System.Windows.Forms.Label serviceCostPerHourLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceListForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.invoiceBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -113,6 +113,7 @@
             this.btnInvoiceEdit = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
             this.groupBoxInvoiceLineItemBtns = new System.Windows.Forms.GroupBox();
+            this.btnAddInvLineItemSave = new System.Windows.Forms.Button();
             this.empLastNameTextBox = new System.Windows.Forms.TextBox();
             this.empFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.serviceCostTextBox = new System.Windows.Forms.TextBox();
@@ -131,7 +132,6 @@
             this.btnAddInvLineItem = new System.Windows.Forms.Button();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnInvoicesExit = new System.Windows.Forms.Button();
-            this.btnAddInvLineItemSave = new System.Windows.Forms.Button();
             invoiceDateLabel = new System.Windows.Forms.Label();
             invoiceIDLabel1 = new System.Windows.Forms.Label();
             customerIDLabel = new System.Windows.Forms.Label();
@@ -484,9 +484,9 @@
             // 
             // Cost
             // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = "$0.00";
-            this.Cost.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = "$0.00";
+            this.Cost.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cost.HeaderText = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.ReadOnly = true;
@@ -529,9 +529,9 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn2.HeaderText = "Invoice Date";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -563,9 +563,9 @@
             // 
             // InvoiceTotal
             // 
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = "$0.00";
-            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "$0.00";
+            this.InvoiceTotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.InvoiceTotal.HeaderText = "Invoice Total";
             this.InvoiceTotal.Name = "InvoiceTotal";
             this.InvoiceTotal.ReadOnly = true;
@@ -796,6 +796,7 @@
             this.customerPhoneNumTextBox.ReadOnly = true;
             this.customerPhoneNumTextBox.Size = new System.Drawing.Size(227, 27);
             this.customerPhoneNumTextBox.TabIndex = 24;
+            this.customerPhoneNumTextBox.TabStop = false;
             // 
             // customerBindingSource
             // 
@@ -807,7 +808,7 @@
             this.btnSaveInvoice.Location = new System.Drawing.Point(456, 254);
             this.btnSaveInvoice.Name = "btnSaveInvoice";
             this.btnSaveInvoice.Size = new System.Drawing.Size(220, 57);
-            this.btnSaveInvoice.TabIndex = 23;
+            this.btnSaveInvoice.TabIndex = 5;
             this.btnSaveInvoice.Text = "Save";
             this.btnSaveInvoice.UseVisualStyleBackColor = true;
             this.btnSaveInvoice.Visible = false;
@@ -821,6 +822,7 @@
             this.customerFNameTextBox.ReadOnly = true;
             this.customerFNameTextBox.Size = new System.Drawing.Size(227, 27);
             this.customerFNameTextBox.TabIndex = 22;
+            this.customerFNameTextBox.TabStop = false;
             // 
             // customerLNameTextBox1
             // 
@@ -830,6 +832,7 @@
             this.customerLNameTextBox1.ReadOnly = true;
             this.customerLNameTextBox1.Size = new System.Drawing.Size(227, 27);
             this.customerLNameTextBox1.TabIndex = 21;
+            this.customerLNameTextBox1.TabStop = false;
             // 
             // customerIDComboBox
             // 
@@ -842,7 +845,7 @@
             this.customerIDComboBox.Location = new System.Drawing.Point(244, 105);
             this.customerIDComboBox.Name = "customerIDComboBox";
             this.customerIDComboBox.Size = new System.Drawing.Size(227, 28);
-            this.customerIDComboBox.TabIndex = 19;
+            this.customerIDComboBox.TabIndex = 1;
             this.customerIDComboBox.ValueMember = "CustomerID";
             // 
             // invoiceIDTextBox
@@ -853,6 +856,7 @@
             this.invoiceIDTextBox.ReadOnly = true;
             this.invoiceIDTextBox.Size = new System.Drawing.Size(227, 27);
             this.invoiceIDTextBox.TabIndex = 14;
+            this.invoiceIDTextBox.TabStop = false;
             // 
             // invoiceDateDateTimePicker
             // 
@@ -862,7 +866,7 @@
             this.invoiceDateDateTimePicker.Location = new System.Drawing.Point(244, 72);
             this.invoiceDateDateTimePicker.Name = "invoiceDateDateTimePicker";
             this.invoiceDateDateTimePicker.Size = new System.Drawing.Size(227, 27);
-            this.invoiceDateDateTimePicker.TabIndex = 13;
+            this.invoiceDateDateTimePicker.TabIndex = 0;
             // 
             // btnDeleteInvoice
             // 
@@ -870,7 +874,7 @@
             this.btnDeleteInvoice.Location = new System.Drawing.Point(456, 317);
             this.btnDeleteInvoice.Name = "btnDeleteInvoice";
             this.btnDeleteInvoice.Size = new System.Drawing.Size(220, 57);
-            this.btnDeleteInvoice.TabIndex = 11;
+            this.btnDeleteInvoice.TabIndex = 4;
             this.btnDeleteInvoice.Text = "Delete Invoice";
             this.btnDeleteInvoice.UseVisualStyleBackColor = true;
             this.btnDeleteInvoice.Click += new System.EventHandler(this.btnDeleteInvoice_Click);
@@ -881,7 +885,7 @@
             this.btnInvoiceEdit.Location = new System.Drawing.Point(232, 317);
             this.btnInvoiceEdit.Name = "btnInvoiceEdit";
             this.btnInvoiceEdit.Size = new System.Drawing.Size(220, 57);
-            this.btnInvoiceEdit.TabIndex = 10;
+            this.btnInvoiceEdit.TabIndex = 3;
             this.btnInvoiceEdit.Text = "Edit Invoice";
             this.btnInvoiceEdit.UseVisualStyleBackColor = true;
             this.btnInvoiceEdit.Click += new System.EventHandler(this.btnInvoiceEdit_Click);
@@ -892,7 +896,7 @@
             this.btnInvoiceAdd.Location = new System.Drawing.Point(6, 317);
             this.btnInvoiceAdd.Name = "btnInvoiceAdd";
             this.btnInvoiceAdd.Size = new System.Drawing.Size(220, 57);
-            this.btnInvoiceAdd.TabIndex = 9;
+            this.btnInvoiceAdd.TabIndex = 2;
             this.btnInvoiceAdd.Text = "Add Invoice";
             this.btnInvoiceAdd.UseVisualStyleBackColor = true;
             this.btnInvoiceAdd.Click += new System.EventHandler(this.btnInvoiceAdd_Click);
@@ -931,6 +935,18 @@
             this.groupBoxInvoiceLineItemBtns.TabStop = false;
             this.groupBoxInvoiceLineItemBtns.Text = "Invoice Line Items";
             // 
+            // btnAddInvLineItemSave
+            // 
+            this.btnAddInvLineItemSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddInvLineItemSave.Location = new System.Drawing.Point(6, 265);
+            this.btnAddInvLineItemSave.Name = "btnAddInvLineItemSave";
+            this.btnAddInvLineItemSave.Size = new System.Drawing.Size(220, 57);
+            this.btnAddInvLineItemSave.TabIndex = 14;
+            this.btnAddInvLineItemSave.Text = "Save";
+            this.btnAddInvLineItemSave.UseVisualStyleBackColor = true;
+            this.btnAddInvLineItemSave.Visible = false;
+            this.btnAddInvLineItemSave.Click += new System.EventHandler(this.btnAddInvLineItemSave_Click);
+            // 
             // empLastNameTextBox
             // 
             this.empLastNameTextBox.Location = new System.Drawing.Point(186, 224);
@@ -938,6 +954,7 @@
             this.empLastNameTextBox.ReadOnly = true;
             this.empLastNameTextBox.Size = new System.Drawing.Size(244, 27);
             this.empLastNameTextBox.TabIndex = 36;
+            this.empLastNameTextBox.TabStop = false;
             // 
             // empFirstNameTextBox
             // 
@@ -946,6 +963,7 @@
             this.empFirstNameTextBox.ReadOnly = true;
             this.empFirstNameTextBox.Size = new System.Drawing.Size(244, 27);
             this.empFirstNameTextBox.TabIndex = 35;
+            this.empFirstNameTextBox.TabStop = false;
             // 
             // serviceCostTextBox
             // 
@@ -954,6 +972,7 @@
             this.serviceCostTextBox.ReadOnly = true;
             this.serviceCostTextBox.Size = new System.Drawing.Size(138, 27);
             this.serviceCostTextBox.TabIndex = 34;
+            this.serviceCostTextBox.TabStop = false;
             // 
             // servNameTextBox
             // 
@@ -962,6 +981,7 @@
             this.servNameTextBox.ReadOnly = true;
             this.servNameTextBox.Size = new System.Drawing.Size(244, 27);
             this.servNameTextBox.TabIndex = 33;
+            this.servNameTextBox.TabStop = false;
             // 
             // textBox10
             // 
@@ -977,7 +997,7 @@
             this.btnInvLineItemCancel.Location = new System.Drawing.Point(230, 265);
             this.btnInvLineItemCancel.Name = "btnInvLineItemCancel";
             this.btnInvLineItemCancel.Size = new System.Drawing.Size(220, 57);
-            this.btnInvLineItemCancel.TabIndex = 31;
+            this.btnInvLineItemCancel.TabIndex = 12;
             this.btnInvLineItemCancel.Text = "Cancel";
             this.btnInvLineItemCancel.UseVisualStyleBackColor = true;
             this.btnInvLineItemCancel.Visible = false;
@@ -989,7 +1009,7 @@
             this.btnInvLineItemSave.Location = new System.Drawing.Point(456, 265);
             this.btnInvLineItemSave.Name = "btnInvLineItemSave";
             this.btnInvLineItemSave.Size = new System.Drawing.Size(220, 57);
-            this.btnInvLineItemSave.TabIndex = 30;
+            this.btnInvLineItemSave.TabIndex = 13;
             this.btnInvLineItemSave.Text = "Save";
             this.btnInvLineItemSave.UseVisualStyleBackColor = true;
             this.btnInvLineItemSave.Visible = false;
@@ -1003,7 +1023,7 @@
             this.serviceIDComboBox.Location = new System.Drawing.Point(319, 37);
             this.serviceIDComboBox.Name = "serviceIDComboBox";
             this.serviceIDComboBox.Size = new System.Drawing.Size(112, 28);
-            this.serviceIDComboBox.TabIndex = 27;
+            this.serviceIDComboBox.TabIndex = 6;
             this.serviceIDComboBox.SelectedIndexChanged += new System.EventHandler(this.serviceIDComboBox_SelectedIndexChanged);
             // 
             // invoiceIDTextBox1
@@ -1014,6 +1034,7 @@
             this.invoiceIDTextBox1.ReadOnly = true;
             this.invoiceIDTextBox1.Size = new System.Drawing.Size(100, 27);
             this.invoiceIDTextBox1.TabIndex = 24;
+            this.invoiceIDTextBox1.TabStop = false;
             // 
             // lblServiceCostMoneySign
             // 
@@ -1036,7 +1057,7 @@
             0});
             this.serviceNumOfHoursNumericUpDown.Name = "serviceNumOfHoursNumericUpDown";
             this.serviceNumOfHoursNumericUpDown.Size = new System.Drawing.Size(120, 27);
-            this.serviceNumOfHoursNumericUpDown.TabIndex = 22;
+            this.serviceNumOfHoursNumericUpDown.TabIndex = 8;
             this.serviceNumOfHoursNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -1054,7 +1075,7 @@
             this.employeeIDComboBox.Location = new System.Drawing.Point(562, 37);
             this.employeeIDComboBox.Name = "employeeIDComboBox";
             this.employeeIDComboBox.Size = new System.Drawing.Size(99, 28);
-            this.employeeIDComboBox.TabIndex = 17;
+            this.employeeIDComboBox.TabIndex = 7;
             this.employeeIDComboBox.ValueMember = "EmployeeID";
             this.employeeIDComboBox.SelectedIndexChanged += new System.EventHandler(this.employeeIDComboBox_SelectedIndexChanged);
             // 
@@ -1068,7 +1089,7 @@
             this.btnDeleteInvLineItem.Location = new System.Drawing.Point(456, 328);
             this.btnDeleteInvLineItem.Name = "btnDeleteInvLineItem";
             this.btnDeleteInvLineItem.Size = new System.Drawing.Size(220, 57);
-            this.btnDeleteInvLineItem.TabIndex = 14;
+            this.btnDeleteInvLineItem.TabIndex = 11;
             this.btnDeleteInvLineItem.Text = "Delete Line Item";
             this.btnDeleteInvLineItem.UseVisualStyleBackColor = true;
             this.btnDeleteInvLineItem.Click += new System.EventHandler(this.btnDeleteInvLineItem_Click);
@@ -1079,7 +1100,7 @@
             this.btnEditInvLineItem.Location = new System.Drawing.Point(232, 328);
             this.btnEditInvLineItem.Name = "btnEditInvLineItem";
             this.btnEditInvLineItem.Size = new System.Drawing.Size(220, 57);
-            this.btnEditInvLineItem.TabIndex = 13;
+            this.btnEditInvLineItem.TabIndex = 10;
             this.btnEditInvLineItem.Text = "Edit Line Item";
             this.btnEditInvLineItem.UseVisualStyleBackColor = true;
             this.btnEditInvLineItem.Click += new System.EventHandler(this.btnEditInvLineItem_Click);
@@ -1090,7 +1111,7 @@
             this.btnAddInvLineItem.Location = new System.Drawing.Point(6, 328);
             this.btnAddInvLineItem.Name = "btnAddInvLineItem";
             this.btnAddInvLineItem.Size = new System.Drawing.Size(220, 57);
-            this.btnAddInvLineItem.TabIndex = 12;
+            this.btnAddInvLineItem.TabIndex = 9;
             this.btnAddInvLineItem.Text = "Add Line Item";
             this.btnAddInvLineItem.UseVisualStyleBackColor = true;
             this.btnAddInvLineItem.Click += new System.EventHandler(this.btnAddInvLineItem_Click);
@@ -1105,23 +1126,10 @@
             this.btnInvoicesExit.Location = new System.Drawing.Point(1475, 98);
             this.btnInvoicesExit.Name = "btnInvoicesExit";
             this.btnInvoicesExit.Size = new System.Drawing.Size(220, 57);
-            this.btnInvoicesExit.TabIndex = 24;
+            this.btnInvoicesExit.TabIndex = 15;
             this.btnInvoicesExit.Text = "Exit";
             this.btnInvoicesExit.UseVisualStyleBackColor = true;
-            this.btnInvoicesExit.Visible = false;
             this.btnInvoicesExit.Click += new System.EventHandler(this.btnInvoicesExit_Click);
-            // 
-            // btnAddInvLineItemSave
-            // 
-            this.btnAddInvLineItemSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddInvLineItemSave.Location = new System.Drawing.Point(6, 265);
-            this.btnAddInvLineItemSave.Name = "btnAddInvLineItemSave";
-            this.btnAddInvLineItemSave.Size = new System.Drawing.Size(220, 57);
-            this.btnAddInvLineItemSave.TabIndex = 37;
-            this.btnAddInvLineItemSave.Text = "Save";
-            this.btnAddInvLineItemSave.UseVisualStyleBackColor = true;
-            this.btnAddInvLineItemSave.Visible = false;
-            this.btnAddInvLineItemSave.Click += new System.EventHandler(this.btnAddInvLineItemSave_Click);
             // 
             // InvoiceListForm
             // 

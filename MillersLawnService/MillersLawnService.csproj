@@ -91,24 +91,6 @@
     <Compile Include="Forms\EmployeesForms\EmployeesListForm.Designer.cs">
       <DependentUpon>EmployeesListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InvoiceLineItemsForms\AddInvoiceLineItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InvoiceLineItemsForms\AddInvoiceLineItemForm.Designer.cs">
-      <DependentUpon>AddInvoiceLineItemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InvoiceLineItemsForms\EditInvoiceLineItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InvoiceLineItemsForms\EditInvoiceLineItemForm.Designer.cs">
-      <DependentUpon>EditInvoiceLineItemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InvoiceLineItemsForms\InvoiceLineItemsListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InvoiceLineItemsForms\InvoiceLineItemsListForm.Designer.cs">
-      <DependentUpon>InvoiceLineItemsListForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\InvoicesForms\AddInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>

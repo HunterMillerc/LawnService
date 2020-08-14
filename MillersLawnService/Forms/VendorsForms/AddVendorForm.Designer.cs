@@ -198,6 +198,7 @@
             this.vendorPhoneNumTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "VendorPhoneNum", true));
             this.vendorPhoneNumTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vendorPhoneNumTextBox.Location = new System.Drawing.Point(201, 335);
+            this.vendorPhoneNumTextBox.MaxLength = 10;
             this.vendorPhoneNumTextBox.Name = "vendorPhoneNumTextBox";
             this.vendorPhoneNumTextBox.Size = new System.Drawing.Size(216, 27);
             this.vendorPhoneNumTextBox.TabIndex = 3;

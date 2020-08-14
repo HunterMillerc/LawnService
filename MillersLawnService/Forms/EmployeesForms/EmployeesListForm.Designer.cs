@@ -516,6 +516,7 @@
             this.employeePhoneNumTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "EmployeePhoneNum", true));
             this.employeePhoneNumTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeePhoneNumTextBox.Location = new System.Drawing.Point(183, 278);
+            this.employeePhoneNumTextBox.MaxLength = 10;
             this.employeePhoneNumTextBox.Name = "employeePhoneNumTextBox";
             this.employeePhoneNumTextBox.ReadOnly = true;
             this.employeePhoneNumTextBox.Size = new System.Drawing.Size(216, 27);
